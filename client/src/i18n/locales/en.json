@@ -1,0 +1,11 @@
+{
+    "common": {
+        "helloWorld": "Hello World"
+    },
+    "error": {
+        "notFound": "Not found",
+        "notFoundText": "We could not find the page you are looking for",
+        "unexpectedError": "Ooops",
+        "unexpectedErrorText": "Something must have gone wrong, please try again"
+    }
+}

@@ -1,0 +1,20 @@
+stages:
+  - build_and_test
+  - deploy
+
+tests:
+  stage: build_and_test
+  script:
+    - echo 'running tests'
+    - pwd
+    - ./test-runner.sh
+  except:
+    - live-deployment
+    - merge_requests
+
+deploy_app:
+  stage: deploy
+  script:
+    - echo 'TODO - No automatic deployment script available'
+  only:
+    - live-deployment

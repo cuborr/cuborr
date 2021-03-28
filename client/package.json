@@ -1,0 +1,64 @@
+{
+  "name": "shapix",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5000",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "http-proxy-middleware": "^1.0.6",
+    "i18next": "^19.8.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "react": "^16.13.1",
+    "react-content-loader": "^5.1.3",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.3",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3",
+    "react-scripts-ts": "^3.1.0",
+    "react-spinners-kit": "^1.9.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.0",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/react-router": "^5.1.8",
+    "@types/styled-components": "^5.1.3",
+    "babel-plugin-styled-components": "^1.11.1",
+    "prettier": "2.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prettie": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "styled-components": "^5"
+  }
+}

@@ -1,0 +1,13 @@
+.git
+.cache
+**/*node_modules
+100.db
+.vscode
+.mypy_cache
+**/*__pycache__
+node_modules
+npm-debug.log
+.dockerignore
+**/.git
+**/.DS_Store
+**/node_modules

@@ -1,0 +1,13 @@
+{
+    "plugins": [
+        "babel-plugin-styled-components",
+        [
+            "module-resolver",
+            {
+                "alias": {
+                    "components": "./src/components/"
+                }
+            }
+        ]
+    ]
+}
