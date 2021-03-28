@@ -1,14 +1,18 @@
 from os import environ
 
 class BaseConfig(object):
-    REACT_SCRIPTS_DEV_SERVER_HOST = "http://localhost:3000"
-    DB_USER = environ.get("DB_USER", "root")
-    DB_HOST = environ.get("DB_HOST", "db:27017")
-    DB_PASSWORD = environ.get("DB_PASSWORD", "databasepw")
+    MONGODB_SETTINGS = {
+        'db': environ.get("DB_NAME", "main"),
+        'username': environ.get("DB_USER", "root"),
+        'password': environ.get("DB_PASSWORD", "databasepw"),
+        'host': environ.get("DB_HOST", "db"),
+        'port': int(environ.get("DB_PORT", "27017")),
+    }
     IDENTITY_SERVER_HOST = environ.get(
-        "IDENTITY_SERVER_HOST", "http://localhost:3000")
+        "IDENTITY_SERVER_HOST", "http://localhost:9000")
     AUTH_REDIRECT_HOST = environ.get(
-        "AUTH_REDIRECT_HOST", "http://localhost:3000")
+        "AUTH_REDIRECT_HOST", "http://localhost:9000")
+
 
 class ProductionConfig(BaseConfig):
     DEBUG = False

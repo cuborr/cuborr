@@ -13,9 +13,12 @@ services:
       - DB_USER=root
       - DB_HOST=db
       - DB_PORT=27017
+      - DB_NAME=main
       - DB_PASSWORD=rootpassword
     volumes:
       - .:/usr/src/web
+    links:
+      - db
   db:
     image: mongo:latest
     environment:

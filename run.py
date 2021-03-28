@@ -1,9 +1,9 @@
 import os
 from flask import (send_from_directory,
                    jsonify, render_template, request, abort, Flask)
-from requests import get
-from api.core.views import core_blueprint
 from configurations import BaseConfig
+from models.database import db
+from api.core.views import core_blueprint
 
 try:
     PRODUCTION = os.environ["FLASK_ENV"] == "production"
@@ -23,9 +23,11 @@ app = Flask(__name__, static_folder="./client/build")
 # Load this config object for development mode
 app.config.from_object(CONFIG_PATH)
 
-# register blueprints
-app.register_blueprint(core_blueprint)
+# init database
+db.init_app(app)
 
+# Register blueprints
+app.register_blueprint(core_blueprint)
 
 @app.route("/")
 def serve_react_app():

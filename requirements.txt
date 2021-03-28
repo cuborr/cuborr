@@ -18,3 +18,4 @@ gunicorn==20.0.4
 pyjwt===1.7.1
 typing-extensions==3.7.4.3
 selenium==3.141.0
+flask-mongoengine==1.0.0

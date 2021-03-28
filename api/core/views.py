@@ -2,12 +2,14 @@ import json
 import requests
 from flask import Blueprint, jsonify, request
 from configurations import BaseConfig as config
+from models.user import User
 
 core_blueprint = Blueprint('core', __name__)
 
 
 @core_blueprint.route('/api/hello-world')
 def get_hello_world():
+    user = User.objects().all()
     return jsonify({ "key": 'Hello Wold'})
 
 @core_blueprint.route('/api/user-config')
