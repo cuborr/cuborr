@@ -7,14 +7,14 @@ export type ButtonComponentProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button<ButtonComponentProps>`
-  padding: 0 12pt;
-  color: var(--color-bg-light);
+  padding: 0 14pt;
+  color: var(--color-bg-dark);
   font-size: var(--font-size-r);
-  height: 32pt;
-  font-weight: 700;
-  background-color: var(--color-blue);
+  height: 38pt;
+  font-weight: 600;
+  background-color: var(--color-green);
   border: none;
-  border-radius: var(--border-radius-s);
+  border-radius: 19pt;
   appearance: none;
   cursor: pointer;
   :focus {

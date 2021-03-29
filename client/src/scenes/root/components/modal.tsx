@@ -27,7 +27,7 @@ const StyledIcon = styled(Icon)`
   padding-left: calc(var(--margin-l) + 12pt);
   cursor: pointer;
   svg {
-    fill: var(--color-bg-light);
+    fill: var(--color-text-light);
   }
   @media (max-width: 625px) {
     padding-left: var(--margin-r);
@@ -40,7 +40,7 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #00000099;
+  background-color: #00000077;
 `;
 
 export const Modal: React.FC<ModalProps> = ({ children, onClose }) => (

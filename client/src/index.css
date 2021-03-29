@@ -6,10 +6,10 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
 }
 
 code {
@@ -37,16 +37,17 @@ a:focus {
 }
 
 :root {
-  --color-bg-dark: #f8fbff;
-  --color-bg-regular: #fafbfd;
-  --color-bg-light: #ffffff;
+  --color-bg-dark: #000000;
+  --color-bg-regular: #000000;
+  --color-bg-light: #252525;
+  --color-text-light: #FFFFFF;
   --color-grey-regular: #8fa6bc;
   --color-grey-light: #dadadb;
   --color-grey-dark: #375066;
   --color-blue: #6691ef;
   --color-blue-rgb: 102, 145, 239;
   --color-teal: #3adce3;
-  --color-green: #48cf8f;
+  --color-green: #07e396;
   --color-green-rgb: 72, 207, 143;
   --color-orange: #fab852;
   --color-red: #fa8080;

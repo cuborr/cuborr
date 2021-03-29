@@ -1,6 +1,13 @@
 {
     "common": {
-        "helloWorld": "Hello World"
+        "helloWorld": "Hello World",
+        "createAssignmentNow": "Jetzt Auftrag erstellen",
+        "registerPrinter": "Drucker registrieren"
+    },
+    "home": {
+        "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
+        "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Model zum günstigsten 💰",
+        "insentive1": "Verdiene mit Deinem ungenutzen Drucker 💸 und beteilige Dich and spannenden Projekten"
     },
     "error": {
         "notFound": "Nicht gefunden",

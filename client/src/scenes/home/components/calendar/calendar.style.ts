@@ -12,7 +12,7 @@ const Container = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 90vw;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-text-light);
   border-radius: var(--border-radius-m);
   box-shadow: 0px 0px 20px #00000033;
   animation-name: animatebottom;
