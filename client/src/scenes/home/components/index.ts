@@ -1,1 +1,1 @@
-export * from './calendar/calendar';
+export * from './assignment/assignment';

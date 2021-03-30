@@ -45,7 +45,7 @@ const Overlay = styled.div`
 
 export const Modal: React.FC<ModalProps> = ({ children, onClose }) => (
   <Container>
-    <Overlay onClick={onClose} />
+    <Overlay />
     {children}
     <StyledIcon name="close" onClick={onClose} size="26pt" />
   </Container>

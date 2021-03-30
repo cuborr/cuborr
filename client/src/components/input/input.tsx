@@ -24,17 +24,20 @@ const InputContainer = styled.div<StyleProps>`
   position: relative;
 
   & > input {
-    border: 0.5pt solid ${({ error }) => (error ? 'var(--color-red)' : 'var(--color-grey-light)')};
+    border: 0.5pt solid ${({ error }) => (error ? 'var(--color-red)' : 'var(--color-border-light)')};
     border-radius: var(--border-radius-s);
     background-color: transparent;
+    color: var(--color-text-light);
+    
     outline: none;
-    padding: var(--margin-r) var(--margin-xs) var(--margin-r) var(--margin-m);
+    padding: var(--margin-r) var(--margin-r) var(--margin-r) var(--margin-m);
     font-size: var(--font-size-m);
     transition: all 0.2s ease;
     z-index: 1;
   }
   & > label {
-    color: var(--color-grey-regular);
+    color: var(--color-text-dark);
+    font-weight: 600;
     position: absolute;
     top: 15px;
     left: 15px;
@@ -42,12 +45,11 @@ const InputContainer = styled.div<StyleProps>`
     z-index: 1;
 
     ${(props) =>
-      props.focused &&
-      `
+    props.focused &&
+    `
       font-size: var(--font-size-s);
-      transform: translateY(-23px) translateX(-5px);
+      transform: translateY(-35px) translateX(-3px);
       z-index: 2;
-      background: white;
       padding: 0 8px;
     `}
   }
@@ -75,14 +77,17 @@ export const Input: React.FC<InputProps> = ({
   };
 
   const handleOnBlur = () => {
-    setFocused(false);
-    if (onBlur !== undefined) {
-      onBlur();
+    if (!value) {
+      setFocused(false);
+      if (onBlur !== undefined) {
+        onBlur();
+      }
     }
   };
 
   const handleOnChange = (val) => {
     if (onChange !== undefined) onChange(val);
+    if (val && !focused) handleOnFocus()
   };
 
   const renderLabel = () => {

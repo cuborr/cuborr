@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useHelloWorld } from 'src/data/hooks';
 import { openModal } from 'src/store/layout/actions';
 // components
-import { Container, Button, Icon, VectorGraphic } from 'src/components';
-import { Calendar } from './components';
+import { Container, Button, VectorGraphic } from 'src/components';
+import { Assignment } from './components';
 
 const Wrapper = styled.div`
   z-index: 1;
@@ -150,8 +150,8 @@ export const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   // const { value } = useHelloWorld();
-  const onClickCreateAssignment = () => dispatch(openModal(<Calendar />));
-  const onClickRegisterPrinter = () => dispatch(openModal(<Calendar />));
+  const onClickCreateAssignment = () => dispatch(openModal(<Assignment />));
+  const onClickRegisterPrinter = () => dispatch(openModal(<Assignment />));
 
   return (
     <>

@@ -9,6 +9,6 @@ export const RootContainer = styled.main<StyleProps>`
   display: flex;
   flex: 1;
   flex-direction: row;
-  filter: ${({ isBlurred }) => (isBlurred ? 'blur(8px)' : undefined)};
+  filter: ${({ isBlurred }) => (isBlurred ? 'blur(60px)' : undefined)};
   transition: filter 0.2s ease-in-out;
 `;
