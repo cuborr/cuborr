@@ -1,13 +1,33 @@
 {
     "common": {
-        "helloWorld": "Hello World",
         "createAssignmentNow": "Jetzt Auftrag erstellen",
-        "registerPrinter": "Drucker registrieren"
+        "registerPrinter": "Drucker registrieren",
+        "next": "Weiter",
+        "submit": "Absenden",
+        "select": "Auswählen",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "streetAddress": "Straße, Hausnummer",
+        "city": "Stadt",
+        "zip": "PLZ",
+        "country": "Land",
+        "phoneNumber": "Telefonnummer",
+        "email": "E-Mail Adresse",
+        "title": "Titel",
+        "compensation": "Vergütung",
+        "currency": "Währung",
+        "notesOptional": "Notizen (optional)"
     },
     "home": {
         "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
         "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Model zum günstigsten 💰",
         "insentive1": "Verdiene mit Deinem ungenutzen Drucker 💸 und beteilige Dich and spannenden Projekten"
+    },
+    "assignment": {
+        "nameTitle": "Wie sollen wir Dich nennen?",
+        "addressTitle": "Wie ist Deine Lieferadresse?",
+        "contactTitle": "Kontakt für den Hersteller",
+        "assignmentTitle": "Dein Auftrag"
     },
     "error": {
         "notFound": "Nicht gefunden",

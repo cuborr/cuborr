@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Input } from 'src/components';
+import { useTranslation } from 'react-i18next';
 import {
     Container,
     Wrapper,
@@ -7,11 +8,20 @@ import {
     ButtonContainer,
     AddressGrid,
     AssignmentGrid,
+    StyledButton,
+    StyledButtonFormatText,
+    StyledFileContainer,
+    StyledCloseIcon,
+    StyledButtonText,
+    StyledInput,
     Title,
 } from './assignment.style';
+import { IndexIndicator } from './components/index-indicator';
 
 
 export const Assignment: React.FC = () => {
+    const { t } = useTranslation();
+    const input = React.useRef<HTMLInputElement>(null)
     const [formIndex, setFormIndex] = React.useState<number>(0)
 
     // name
@@ -38,31 +48,45 @@ export const Assignment: React.FC = () => {
     const incrementFrom = () => {
         if (formIndex === 0 && firstName && lastName) {
             setFormIndex(formIndex + 1)
-        }
-        if (formIndex === 1 && streetAddress && city && postalCode && country) {
+        } else if (formIndex === 1 && streetAddress && city && postalCode && country) {
             setFormIndex(formIndex + 1)
-        }
-        if (formIndex === 2 && email && phoneNumber) {
+        } else if (formIndex === 2 && email && phoneNumber) {
             setFormIndex(formIndex + 1)
         }
     }
 
+    const onClickSelectFile = () => {
+        if (input.current) input.current.click();
+    }
+
+    const onChangeFile = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        const f = event.target.files[0];
+        console.log(f)
+        setFile(f)
+    }
+
     const renderNextButton = () => (
         <ButtonContainer>
-            <Button onClick={incrementFrom}>Weiter</Button>
+            <Button onClick={incrementFrom}>{t("common.next")}</Button>
         </ButtonContainer>
     )
 
+
+    const onClickRemoveFile = () => setFile(undefined)
+
     return (
         <>
+            <IndexIndicator index={formIndex} />
             {
                 formIndex === 0 && (
                     <Container>
-                        <Title>Wie sollen wir Dich nennen?</Title>
+                        <Title>{t("assignment.nameTitle")}</Title>
                         <Wrapper>
                             <UserGrid>
-                                <Input value={firstName} label="First Name" onChange={setFirstName} />
-                                <Input value={lastName} label="Last Name" onChange={setLastName} />
+                                <Input value={firstName} label={t("common.firstName")} onChange={setFirstName} />
+                                <Input value={lastName} label={t("common.lastName")} onChange={setLastName} />
                             </UserGrid>
                         </Wrapper>
                         {renderNextButton()}
@@ -72,13 +96,13 @@ export const Assignment: React.FC = () => {
             {
                 formIndex === 1 && (
                     <Container>
-                        <Title>Wie ist Deine Lieferadresse?</Title>
+                        <Title>{t("assignment.addressTitle")}</Title>
                         <Wrapper>
                             <AddressGrid>
-                                <Input value={streetAddress} label="Street Address" onChange={setStreetAddress} />
-                                <Input value={city} label="City" onChange={setCity} />
-                                <Input value={postalCode} label="ZIP" onChange={setPostalCode} />
-                                <Input value={country} label="Country" onChange={setCountry} />
+                                <Input value={streetAddress} label={t("common.streetAddress")} onChange={setStreetAddress} />
+                                <Input value={city} label={t("common.city")} onChange={setCity} />
+                                <Input value={postalCode} label={t("common.zip")} onChange={setPostalCode} />
+                                <Input value={country} label={t("common.country")} onChange={setCountry} />
                             </AddressGrid>
                         </Wrapper>
                         {renderNextButton()}
@@ -88,11 +112,11 @@ export const Assignment: React.FC = () => {
             {
                 formIndex === 2 && (
                     <Container>
-                        <Title>Kontakt für den Hersteller</Title>
+                        <Title>{t("assignment.contactTitle")}</Title>
                         <Wrapper>
                             <UserGrid>
-                                <Input value={phoneNumber} label="Phone Number" onChange={setPhoneNumber} />
-                                <Input value={email} label="E-Mail" onChange={setEmail} />
+                                <Input value={phoneNumber} label={t("common.phoneNumber")} onChange={setPhoneNumber} />
+                                <Input value={email} label={t("common.email")} onChange={setEmail} />
                             </UserGrid>
                         </Wrapper>
                         {renderNextButton()}
@@ -102,21 +126,44 @@ export const Assignment: React.FC = () => {
             {
                 formIndex === 3 && (
                     <Container>
-                        <Title>Dein Auftrag</Title>
+                        <Title>{t("assignment.assignmentTitle")}</Title>
                         <Wrapper>
                             <AssignmentGrid>
-                                <Input value={title} label="Title" onChange={setTitle} />
-                                <Input value={compensation} label="Compensation" onChange={setCompensation} />
-                                <Input value={currency} label="Currency" onChange={setCurrency} />
-                                <Input value={notes} label="Notes (optional)" onChange={setNotes} />
+                                {file ? (
+                                    <StyledFileContainer onClick={onClickRemoveFile}>
+                                        <StyledCloseIcon name="trash" size="14pt" />
+                                    </StyledFileContainer>
+                                ) : (
+                                    <StyledButton onClick={onClickSelectFile}>
+                                        <div>
+                                            <StyledButtonText>
+                                                {t("common.select")}
+                                            </StyledButtonText>
+                                            <StyledButtonFormatText>
+                                                STL | OBJ | AMF | 3MF | ZIP
+                                            </StyledButtonFormatText>
+                                        </div>
+                                    </StyledButton>
+                                )}
+                                <Input value={title} label={t("common.title")} onChange={setTitle} />
+                                <Input value={compensation} label={t("common.compensation")} onChange={setCompensation} />
+                                <Input value={currency} label={t("common.currency")} onChange={setCurrency} />
+                                <Input value={notes} label={t("common.notesOptional")} onChange={setNotes} />
                             </AssignmentGrid>
                         </Wrapper>
                         <ButtonContainer>
-                            <Button onClick={incrementFrom}>Absenden</Button>
+                            <Button onClick={incrementFrom}>{t("common.submit")}</Button>
                         </ButtonContainer>
                     </Container>
                 )
             }
+            <StyledInput
+                type='file'
+                id='file'
+                onChange={onChangeFile}
+                ref={input}
+                accept=".stl,.obj,.amf,.3mf,.zip"
+            />
         </>
 
     );

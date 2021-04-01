@@ -24,7 +24,7 @@ const StyledIcon = styled(Icon)`
   height: var(--navbar-height);
   top: 0;
   left: 0;
-  padding-left: calc(var(--margin-l) + 12pt);
+  padding-left: var(--margin-l);
   cursor: pointer;
   svg {
     fill: var(--color-text-light);

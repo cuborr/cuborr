@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-
-interface StyleProps {
-    isActive?: boolean;
-    isHighlighted?: boolean;
-    isCurrentMonth?: boolean;
-}
+import { Button, Icon } from 'src/components';
 
 export const Container = styled.div`
   position: fixed;
@@ -72,16 +67,16 @@ export const AssignmentGrid = styled.div`
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: var(--margin-l);
     grid-row-gap: var(--margin-l);
-    div:nth-child(1) {
-        grid-column: 1 / 9;
-    }
     div:nth-child(2) {
-        grid-column: 1 / 6;
+        grid-column: 4 / 9;
     }
     div:nth-child(3) {
-        grid-column: 6 / 9;
+        grid-column: 1 / 6;
     }
     div:nth-child(4) {
+        grid-column: 6 / 9;
+    }
+    div:nth-child(5) {
         grid-column: 1 / 9;
     }
 `;
@@ -99,3 +94,45 @@ export const ButtonContainer = styled.div`
     flex: 1;
     justify-content: flex-end;
 `
+
+export const StyledButton = styled(Button)`
+    border: 0.5pt solid var(--color-border-light);
+    background-color: transparent;
+    
+    border-radius: var(--border-radius-s);
+    color: var(--color-text-light);
+    grid-column: 1 / 4;
+    height: 47px;
+`
+
+export const StyledButtonText = styled.p`
+    font-size: var(--font-size-r);
+    font-weight: 600;
+`
+
+export const StyledButtonFormatText = styled.p`
+    font-size: 0.5rem;
+    font-weight: 400;
+    margin: 2pt auto;
+`
+export const StyledInput = styled.input`
+    display: none;
+`
+
+export const StyledFileContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5pt solid var(--color-border-light);
+    background-color: transparent;
+    border-radius: var(--border-radius-s);
+    color: var(--color-text-light);
+    grid-column: 1 / 4;
+    cursor: pointer;
+`
+
+export const StyledCloseIcon = styled(Icon)`
+  svg {
+    fill: var(--color-text-light);
+  }
+`;
