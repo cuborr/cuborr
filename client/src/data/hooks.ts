@@ -6,34 +6,33 @@ import * as logger from 'src/services/log';
 
 const getConfig = (access, method = 'GET') => ({
   method,
-  headers: { Authorization: 'Bearer ' + access },
+  headers: { Authorization: 'Token ' + access },
 });
 
-export const useHelloWorld = () => {
-  const [value, setValue] = React.useState<HelloWorldInterface>();
+export const useAssignments = () => {
+  const history = useHistory()
+  const [assignments, setAssignments] = React.useState<any>();
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   React.useEffect(() => {
-    const retrieveHelloWorld = async () => {
+    const retrieveAssignments = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch('/api/hello-world');
+        const res = await fetch('/api/assignments');
         setIsLoading(false);
         if (res.status === 200) {
           const data = await res.json();
-          setValue(data)
+          setAssignments(data)
         } else {
-          logger.error(`GET "/api/hello-world" `);
+          logger.error(`GET "/api/assignments" `);
           history.push('/unexpected-error');
         }
       } catch (e) {
-        logger.error(`GET "/api/hello-world" `);
+        logger.error(`GET "/api/assignments" `);
         history.push('/unexpected-error');
       }
     };
-    retrieveHelloWorld();
+    retrieveAssignments();
   }, []);
-  return { value, isLoading };
+  return { assignments, isLoading };
 };

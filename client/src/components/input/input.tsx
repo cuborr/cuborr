@@ -69,6 +69,12 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   const [focused, setFocused] = React.useState<boolean>(false);
 
+  React.useEffect(() => {
+    if (value.length > 0) {
+      setFocused(true)
+    }
+  }, [])
+
   const handleOnFocus = () => {
     setFocused(true);
     if (onFocus !== undefined) {

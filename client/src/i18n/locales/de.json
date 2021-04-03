@@ -16,7 +16,14 @@
         "title": "Titel",
         "compensation": "Vergütung",
         "currency": "Währung",
-        "notesOptional": "Notizen (optional)"
+        "notesOptional": "Notizen (optional)",
+        "applicants": "Bewerber",
+        "comments": "Kommentare",
+        "notes": "Notizen",
+        "download": "Download",
+        "apply": "Bewerben",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
     },
     "home": {
         "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
@@ -33,6 +40,18 @@
         "notFound": "Nicht gefunden",
         "notFoundText": "Wir konnten die Seite nach der du suchst leider nicht ausfindig machen",
         "unexpectedError": "Ooops",
-        "unexpectedErrorText": "Da ist wohl etwas schief gelaufen, bitte versuche es noch einmal"
+        "unexpectedErrorText": "Da ist wohl etwas schief gelaufen, bitte versuche es noch einmal",
+        "invalidDataProvided": "Die verwendeten Eingaben sind nicht zulässig, bitte versuche es nocheinmal",
+        "noFileProvided": "Es wurde keine Datei bereitgestellt",
+        "invalidFile": "Eine ungültige Datei wurde bereitgestellt",
+        "unauthorized": "Du bist nicht dazu berechtigt diese Aktion durchzuführen"
+    },
+    "messages": {
+        "assignmentCreatedSuccessfully": "Dein Auftrag wurde erfolgreich erstellt",
+        "assignmentDeletedSuccessfully": "Dein Auftrag wurde erfolgreich gelöscht"
+    },
+    "alert": {
+        "deleteAssignmentTitle": "Auftrag löschen",
+        "deleteAssignmentText": "Bist du dir sicher, dass du diesen Auftrag löschen willst?"
     }
 }

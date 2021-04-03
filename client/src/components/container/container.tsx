@@ -10,15 +10,15 @@ interface ContainerProps {
 const StyledContainer = styled.div<ContainerProps>`
   /* widescreen */
   @media (min-width: 2560px) {
-    padding: 0 var(--margin-xl);
+    padding: 0 var(--margin-g);
   }
 
   /* default */
-  padding: 0 var(--margin-l);
+  padding: 0 var(--margin-xxl);
 
   /* mobile */
   @media (max-width: 540px) {
-    padding: 0 var(--margin-r);
+    padding: 0 var(--margin-m);
   }
 `;
 

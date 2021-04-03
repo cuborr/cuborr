@@ -42,8 +42,11 @@ a:focus {
   --color-bg-light: #ffffff18;
   --color-text-light: #FFFFFF;
   --color-text-dark: #ffffffe7;
-  --color-green: #07e396;
   --color-border-light: #FFFFFF;
+  --color-green: #07e396;
+  --color-red: #db0d2c;
+  --color-yellow: #c6db0d;
+  
 
   --color-grey-regular: #8fa6bc;
   --color-grey-light: #dadadb;
@@ -54,7 +57,7 @@ a:focus {
   
   --color-green-rgb: 72, 207, 143;
   --color-orange: #fab852;
-  --color-red: #fa8080;
+  
   --color-red-rgb: 250, 128, 128;
   --color-purple: #8a60d9;
   --color-purple-rgb: 138, 96, 217;
@@ -83,9 +86,7 @@ a:focus {
   --margin-xxl: 50pt;
   --margin-g: 100pt;
 
-  --sidebar-width-regular: 250pt;
-  --sidebar-width-small: 90pt;
-  --navbar-height: 60pt;
+  --navbar-height: 50pt;
 
   --device-mobile: 540px;
   --device-tablet: 680px;

@@ -15,8 +15,6 @@ const Container = styled.div`
   top: 5%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation-name: animatebottom;
-  animation-duration: 0.3s;
 `;
 
 const Wrapper = styled.div`

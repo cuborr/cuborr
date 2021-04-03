@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Input } from 'src/components';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Container,
     Wrapper,
@@ -17,10 +18,17 @@ import {
     Title,
 } from './assignment.style';
 import { IndexIndicator } from './components/index-indicator';
+import { LoadingBar } from './components/loading-bar';
+import { closeModal, setPrompt } from 'src/store/layout/actions';
+import { PromptType } from 'src/store/layout/types';
+import { setClient } from 'src/store/user/actions';
+import { RootState } from 'src/store';
 
 
 export const Assignment: React.FC = () => {
     const { t } = useTranslation();
+    const { clientID } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
     const input = React.useRef<HTMLInputElement>(null)
     const [formIndex, setFormIndex] = React.useState<number>(0)
 
@@ -32,7 +40,7 @@ export const Assignment: React.FC = () => {
     const [streetAddress, setStreetAddress] = React.useState<string>("")
     const [city, setCity] = React.useState<string>("")
     const [postalCode, setPostalCode] = React.useState<string>("")
-    const [country, setCountry] = React.useState<string>("")
+    const [country, setCountry] = React.useState<string>("Deutschland")
 
     // contact
     const [email, setEmail] = React.useState<string>("")
@@ -41,9 +49,19 @@ export const Assignment: React.FC = () => {
     // assignment
     const [title, setTitle] = React.useState<string>("")
     const [compensation, setCompensation] = React.useState<string>("")
-    const [currency, setCurrency] = React.useState<string>("")
+    const [currency, setCurrency] = React.useState<string>("EUR")
     const [notes, setNotes] = React.useState<string>("")
     const [file, setFile] = React.useState<any>()
+
+    // upload
+    const [progress, setProgress] = React.useState<number>(0)
+
+    React.useEffect(() => {
+        // jump to last form immidiatetly
+        if (clientID !== undefined) {
+            setFormIndex(3)
+        }
+    }, []);
 
     const incrementFrom = () => {
         if (formIndex === 0 && firstName && lastName) {
@@ -73,14 +91,95 @@ export const Assignment: React.FC = () => {
         </ButtonContainer>
     )
 
-
     const onClickRemoveFile = () => setFile(undefined)
+
+    const onClickSubmit = async () => {
+        const data = new FormData();
+        if (clientID === undefined) {
+            // there has no assignment been created yet
+            data.append('firstName', firstName);
+            data.append('lastName', lastName);
+            data.append('streetAddress', streetAddress);
+            data.append('city', city);
+            data.append('postalCode', postalCode);
+            data.append('country', country);
+            data.append('email', email);
+            data.append('phoneNumber', phoneNumber);
+        }
+        if (!title || !compensation || !currency || !file) {
+            return // something is missing
+        }
+        data.append('title', title);
+        data.append('compensation', compensation);
+        data.append('currency', currency);
+        data.append('file', file);
+        if (notes) data.append('notes', notes);
+
+        const request = new XMLHttpRequest();
+
+        request.open('POST', '/api/assignment');
+
+        if (clientID !== undefined) {
+            request.setRequestHeader("Authorization", `Token ${clientID}`)
+        }
+
+        // upload progress event
+        request.upload.addEventListener('progress', (e) => {
+            // upload progress as percentage
+            const progress = (e.loaded / e.total) * 100;
+            setProgress(Math.round(progress))
+        });
+
+        // request finished event
+        request.addEventListener('load', (e) => {
+            // HTTP status message (200, 404 etc)
+            console.log('Status: ', request.status)
+
+            console.log('Response:')
+            console.log(request.response)
+
+            if (request.status === 201) {
+                const data = JSON.parse(request.response)
+                if (clientID === undefined) {
+                    console.log('New ID: ', data.client.$oid)
+                    localStorage.setItem('client_id', data.client.$oid);
+                    dispatch(setClient(data.client.$oid))
+                }
+                dispatch(setPrompt({
+                    type: PromptType.Success,
+                    duration: 4000,
+                    text: t('messages.assignmentCreatedSuccessfully'),
+                }))
+            } else if (request.status === 400) {
+                console.log('400 Error Text: ', t(request.response))
+                dispatch(setPrompt({
+                    type: PromptType.Error,
+                    duration: 4000,
+                    text: t(request.response),
+                }))
+            } else {
+                if (request.status === 404) {
+                    dispatch(setClient(undefined))
+                    localStorage.removeItem('client_id');
+                }
+                dispatch(setPrompt({
+                    type: PromptType.Error,
+                    duration: 4000,
+                    text: t('error.unexpectedErrorText'),
+                }))
+            }
+            dispatch(closeModal());
+        });
+
+        // send POST request to server
+        request.send(data);
+    }
 
     return (
         <>
-            <IndexIndicator index={formIndex} />
+            {!Boolean(clientID) && <IndexIndicator index={formIndex} />}
             {
-                formIndex === 0 && (
+                formIndex === 0 && !Boolean(clientID) && (
                     <Container>
                         <Title>{t("assignment.nameTitle")}</Title>
                         <Wrapper>
@@ -94,7 +193,7 @@ export const Assignment: React.FC = () => {
                 )
             }
             {
-                formIndex === 1 && (
+                formIndex === 1 && !Boolean(clientID) && (
                     <Container>
                         <Title>{t("assignment.addressTitle")}</Title>
                         <Wrapper>
@@ -110,7 +209,7 @@ export const Assignment: React.FC = () => {
                 )
             }
             {
-                formIndex === 2 && (
+                formIndex === 2 && !Boolean(clientID) && (
                     <Container>
                         <Title>{t("assignment.contactTitle")}</Title>
                         <Wrapper>
@@ -151,8 +250,9 @@ export const Assignment: React.FC = () => {
                                 <Input value={notes} label={t("common.notesOptional")} onChange={setNotes} />
                             </AssignmentGrid>
                         </Wrapper>
+                        {progress > 0 && <LoadingBar percentage={progress} />}
                         <ButtonContainer>
-                            <Button onClick={incrementFrom}>{t("common.submit")}</Button>
+                            <Button onClick={onClickSubmit}>{t("common.submit")}</Button>
                         </ButtonContainer>
                     </Container>
                 )
@@ -168,26 +268,3 @@ export const Assignment: React.FC = () => {
 
     );
 };
-
-/*
-First
-Name
-*/
-
-/*
-Straße und Hausnummer | street address
-Ort | Postleizahl
-Country
-*/
-
-/*
-E-Mail
-Telefonnummer
-*/
-
-/*
-Title
-Preis
-Notes
-File
-*/

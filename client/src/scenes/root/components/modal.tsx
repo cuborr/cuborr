@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // assets
 import { Icon } from 'src/components';
 
-interface ModalProps {
+interface IModalProps {
   onClose: () => any;
   children: JSX.Element;
 }
@@ -43,7 +43,7 @@ const Overlay = styled.div`
   background-color: #00000077;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ children, onClose }) => (
+export const Modal: React.FC<IModalProps> = ({ children, onClose }) => (
   <Container>
     <Overlay />
     {children}

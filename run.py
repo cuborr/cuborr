@@ -4,6 +4,7 @@ from flask import (send_from_directory,
 from configurations import BaseConfig
 from models.database import db
 from api.core.views import core_blueprint
+from api.assignment.views import assignment_blueprint
 
 try:
     PRODUCTION = os.environ["FLASK_ENV"] == "production"
@@ -17,6 +18,9 @@ if PRODUCTION:
 else:
     print('\033[92m' + 'Starting application in DEVELOPMENT settings' + '\033[0m')
 
+if not os.path.exists(BaseConfig.UPLOAD_DIRECTORY):
+    os.makedirs(BaseConfig.UPLOAD_DIRECTORY)
+
 # create app
 app = Flask(__name__, static_folder="./client/build")
 
@@ -28,6 +32,7 @@ db.init_app(app)
 
 # Register blueprints
 app.register_blueprint(core_blueprint)
+app.register_blueprint(assignment_blueprint)
 
 @app.route("/")
 def serve_react_app():

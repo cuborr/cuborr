@@ -3,8 +3,6 @@ from os import environ
 class BaseConfig(object):
     MONGODB_SETTINGS = {
         'db': environ.get("DB_NAME", "main"),
-        'username': environ.get("DB_USER", "root"),
-        'password': environ.get("DB_PASSWORD", "databasepw"),
         'host': environ.get("DB_HOST", "db"),
         'port': int(environ.get("DB_PORT", "27017")),
     }
@@ -12,6 +10,7 @@ class BaseConfig(object):
         "IDENTITY_SERVER_HOST", "http://localhost:9000")
     AUTH_REDIRECT_HOST = environ.get(
         "AUTH_REDIRECT_HOST", "http://localhost:9000")
+    UPLOAD_DIRECTORY = "/usr/src/web/uploads"
 
 
 class ProductionConfig(BaseConfig):

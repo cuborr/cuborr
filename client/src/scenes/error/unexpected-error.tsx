@@ -16,14 +16,14 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 4.5rem;
   font-weight: 800;
-  color: var(--color-grey-dark);
+  color: var(--color-text-light);
   text-align: center;
 `;
 
 const Error = styled.h3`
   font-size: var(--font-size-h3);
   font-weight: 500;
-  color: var(--color-grey-regular);
+  color: var(--color-text-dark);
   text-align: center;
   margin: var(--margin-m) var(--margin-l);
   max-width: 500pt;
