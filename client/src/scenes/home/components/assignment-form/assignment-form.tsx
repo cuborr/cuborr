@@ -16,7 +16,7 @@ import {
     StyledButtonText,
     StyledInput,
     Title,
-} from './assignment.style';
+} from './assignment-form.style';
 import { IndexIndicator } from './components/index-indicator';
 import { LoadingBar } from './components/loading-bar';
 import { closeModal, setPrompt } from 'src/store/layout/actions';
@@ -25,7 +25,7 @@ import { setClient } from 'src/store/user/actions';
 import { RootState } from 'src/store';
 
 
-export const Assignment: React.FC = () => {
+export const AssignmentForm: React.FC = () => {
     const { t } = useTranslation();
     const { clientID } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();

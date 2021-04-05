@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 // store
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'src/store';
-import { Link } from 'react-router-dom';
 // components
 import {
     Container,
@@ -40,12 +39,36 @@ export const AssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
         if (item.client.$oid === clientID) {
             setIsOwner(true)
         }
+        if (contractorID) {
+            item.applicants.forEach(applicant => {
+                if (applicant.$oid === contractorID) {
+                    setIsActive(false);
+                }
+            })
+        }
     }, [])
 
     const onClickApply = async () => {
-        const res = await fetch(`/api/assignment/${item._id.$oid}/apply`)
-        if (res.status === 201) {
+        if (!isActive) return
+        const res = await fetch(`/api/assignment/${item._id.$oid}/apply`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Token ${contractorID}`
+            },
+        })
+        if (res.status === 204) {
             setIsActive(false)
+            dispatch(setPrompt({
+                type: PromptType.Success,
+                duration: 4000,
+                text: t('messages.applicationCreatedSccessfully'),
+            }))
+        } else {
+            dispatch(setPrompt({
+                type: PromptType.Error,
+                duration: 4000,
+                text: t('error.unexpectedErrorText'),
+            }))
         }
     }
 
@@ -89,7 +112,7 @@ export const AssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
 
     return (
         <Container>
-            <Link to={`/assignment/${item._id.$oid}`}>
+            <div>
                 <Title>
                     {item.title}
                 </Title>
@@ -119,7 +142,7 @@ export const AssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
                         </Notes>
                     </>
                 )}
-            </Link>
+            </div>
             {contractorID != undefined && (
                 <ButtonRow>
                     <a href={`http://localhost:5000/api/assignment/download/${item.file}`} download>

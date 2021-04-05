@@ -5,8 +5,10 @@ from flask import Blueprint, jsonify, request, abort, send_from_directory
 from werkzeug.utils import secure_filename
 from configurations import BaseConfig as config
 from api.services.file_upload import allowed_file, file_extension
+from mongoengine.queryset.visitor import Q
 from models.client import Client
 from models.assignment import Assignment
+from models.contractor import Contractor
 
 assignment_blueprint = Blueprint('assignment', __name__)
 
@@ -102,12 +104,19 @@ def retrieve_file(path):
 
 @assignment_blueprint.route("/api/assignment/<path:path>/apply")
 def apply_for_assignments(path):
+    header = request.headers.get('Authorization')
+    if header is None:
+            return 'error.unauthorized', 401
     try:
         assignment = Assignment.objects.get(pk=path)
+        conractor = Contractor.objects.get(pk=header.replace('Token ', ''))
     except:
         return "error.notFound", 404
     
-    return jsonify({ 'hi': ' hi' }), 201
+    assignment.applicants.append(conractor)
+    assignment.save()
+
+    return '', 204
 
 @assignment_blueprint.route('/api/assignment/<path:path>', methods=['DELETE', 'GET'])
 def assignemnt_detail(path):
@@ -116,6 +125,7 @@ def assignemnt_detail(path):
         assignment = Assignment.objects.get(pk=path)
     except:
         return "error.notFound", 404
+    # Delete Assignment
     if request.method == 'DELETE':
         # assignment.delete()
         if header is None:
@@ -126,3 +136,59 @@ def assignemnt_detail(path):
         assignment.delete()
         return '', 204
     return '', 200
+
+
+@assignment_blueprint.route('/api/client/assignments')
+def retrieve_client_assignments():
+    header = request.headers.get('Authorization')
+    if header is None:
+            return 'error.unauthorized', 401
+    assignments = Assignment.objects(
+        Q(state="states.open") & \
+        Q(applicants__not__size=0) & \
+        Q(client=header.replace('Token ', ''))
+    )
+
+    
+    results = json.loads(assignments.to_json())
+
+    for index, assignment in enumerate(assignments):
+        contractors = []
+        for applicant in assignment.applicants:
+            quality = 0
+            communication = 0
+            shipping = 0
+            for rating in applicant.rating:
+                print(rating.quality)
+                print(rating.communication)
+                print(rating.shipping)
+                quality += rating.quality
+                communication += rating.communication
+                shipping += rating.shipping
+            if len(applicant.rating) > 0:
+                quality = quality / len(applicant.rating)
+                communication = communication / len(applicant.rating)
+                shipping = shipping / len(applicant.rating)
+            contractor = json.loads(applicant.to_json())
+            del contractor['_cls']
+            contractor['averageRating'] = {
+                'quality':quality,
+                'communication':communication,
+                'shipping':shipping
+            }
+            contractors.append(contractor)
+        results[index]['applicants'] = contractors
+
+    return jsonify(results), 200
+
+@assignment_blueprint.route('/api/contractor/assignments')
+def retrieve_contractor_assignments():
+    header = request.headers.get('Authorization')
+    if header is None:
+            return 'error.unauthorized', 401
+    assignments = Assignment.objects(
+        Q(state="states.assigned") & \
+        Q(contractor=header.replace('Token ', ''))
+    )
+    return jsonify(assignments), 200
+

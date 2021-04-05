@@ -7,7 +7,7 @@ import { openModal } from 'src/store/layout/actions';
 import { RootState } from 'src/store';
 // components
 import { VectorGraphic, AssignmentItem } from 'src/components';
-import { Assignment } from './components';
+import { AssignmentForm, ContractorForm, ClientIcon, ContractorIcon } from './components';
 import {
   BackgroundImage,
   Navbar,
@@ -34,11 +34,11 @@ export const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { clientID, contractorID } = useSelector((state: RootState) => state.user);
   const { assignments } = useAssignments();
-  const onClickCreateAssignment = () => dispatch(openModal(<Assignment />));
-  const onClickRegisterPrinter = () => dispatch(openModal(<Assignment />));
+  const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
+  const onClickRegisterPrinter = () => dispatch(openModal(<ContractorForm />));
 
   console.log(assignments)
-  
+
   return (
     <div>
       <BackgroundImage />
@@ -57,6 +57,8 @@ export const Home: React.FC = () => {
               {t('common.registerPrinter')}
             </NavLink>
           )}
+          {contractorID && <ContractorIcon />}
+          {clientID && <ClientIcon />}
         </StyledNavContainer>
       </Navbar>
       <StyledContainer>
