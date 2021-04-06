@@ -1,14 +1,14 @@
 import json
-import requests
 from uuid import uuid4
-from flask import Blueprint, jsonify, request, abort, send_from_directory
-from werkzeug.utils import secure_filename
+from flask import Blueprint, jsonify, request, send_from_directory
 from configurations import BaseConfig as config
 from api.services.file_upload import allowed_file, file_extension
 from mongoengine.queryset.visitor import Q
 from models.client import Client
 from models.assignment import Assignment
 from models.contractor import Contractor
+from models.user import User
+from models.comment import Comment
 
 assignment_blueprint = Blueprint('assignment', __name__)
 
@@ -106,14 +106,14 @@ def retrieve_file(path):
 def apply_for_assignments(path):
     header = request.headers.get('Authorization')
     if header is None:
-            return 'error.unauthorized', 401
+        return 'error.unauthorized', 401
     try:
         assignment = Assignment.objects.get(pk=path)
-        conractor = Contractor.objects.get(pk=header.replace('Token ', ''))
+        contractor = Contractor.objects.get(pk=header.replace('Token ', ''))
     except:
         return "error.notFound", 404
     
-    assignment.applicants.append(conractor)
+    assignment.applicants.append(contractor)
     assignment.save()
 
     return '', 204
@@ -125,16 +125,32 @@ def assignemnt_detail(path):
         assignment = Assignment.objects.get(pk=path)
     except:
         return "error.notFound", 404
+    if header is None:
+        return 'error.unauthorized', 401
+    header = header.replace('Token ', '')
     # Delete Assignment
     if request.method == 'DELETE':
-        # assignment.delete()
-        if header is None:
-            return 'error.unauthorized', 401
-        header = header.replace('Token ', '')
         if str(assignment.client.id) != header:
             return 'error.unauthorized', 401
         assignment.delete()
         return '', 204
+    # Accept Contractor
+    if request.method == 'GET':
+        contractor = request.args.get('accept-contractor')
+        if str(assignment.client.id) != header:
+            return 'error.unauthorized', 401
+        ids = [str(contractor.id) for contractor in assignment.applicants]
+        if contractor not in ids:
+            return 'error.unauthorized', 401
+        try:
+            contractor = Contractor.objects.get(pk=contractor)
+        except:
+            return "error.notFound", 404
+        assignment.contractor = contractor
+        assignment.state = "states.assigned"
+        assignment.applicants = None
+        assignment.save()
+        return 'messages.contractorAcceptedSuccessfully', 200
     return '', 200
 
 
@@ -142,42 +158,52 @@ def assignemnt_detail(path):
 def retrieve_client_assignments():
     header = request.headers.get('Authorization')
     if header is None:
-            return 'error.unauthorized', 401
+        return 'error.unauthorized', 401
+    state = request.args.get('state', 'open')
     assignments = Assignment.objects(
-        Q(state="states.open") & \
+        Q(state=f'states.{state}') & \
         Q(applicants__not__size=0) & \
         Q(client=header.replace('Token ', ''))
     )
 
+    return_type = request.args.get('type')
+
+    if return_type == 'count':
+        # user justs needs the count
+        return jsonify({'count':assignments.count()}), 200
     
     results = json.loads(assignments.to_json())
 
-    for index, assignment in enumerate(assignments):
-        contractors = []
-        for applicant in assignment.applicants:
-            quality = 0
-            communication = 0
-            shipping = 0
-            for rating in applicant.rating:
-                print(rating.quality)
-                print(rating.communication)
-                print(rating.shipping)
-                quality += rating.quality
-                communication += rating.communication
-                shipping += rating.shipping
-            if len(applicant.rating) > 0:
-                quality = quality / len(applicant.rating)
-                communication = communication / len(applicant.rating)
-                shipping = shipping / len(applicant.rating)
-            contractor = json.loads(applicant.to_json())
+    if state == 'open':
+        for index, assignment in enumerate(assignments):
+            contractors = []
+            for applicant in assignment.applicants:
+                quality = 0
+                communication = 0
+                shipping = 0
+                for rating in applicant.rating:
+                    quality += rating.quality
+                    communication += rating.communication
+                    shipping += rating.shipping
+                if len(applicant.rating) > 0:
+                    quality = quality / len(applicant.rating)
+                    communication = communication / len(applicant.rating)
+                    shipping = shipping / len(applicant.rating)
+                contractor = json.loads(applicant.to_json())
+                del contractor['_cls']
+                contractor['averageRating'] = {
+                    'quality':quality,
+                    'communication':communication,
+                    'shipping':shipping
+                }
+                contractors.append(contractor)
+            results[index]['applicants'] = contractors
+    
+    else:
+        for index, assignment in enumerate(assignments):
+            contractor = json.loads(assignment.contractor.to_json())
             del contractor['_cls']
-            contractor['averageRating'] = {
-                'quality':quality,
-                'communication':communication,
-                'shipping':shipping
-            }
-            contractors.append(contractor)
-        results[index]['applicants'] = contractors
+            results[index]['contractor'] = contractor
 
     return jsonify(results), 200
 
@@ -185,10 +211,64 @@ def retrieve_client_assignments():
 def retrieve_contractor_assignments():
     header = request.headers.get('Authorization')
     if header is None:
-            return 'error.unauthorized', 401
+        return 'error.unauthorized', 401
+    state = request.args.get('state', 'assigned')
+
     assignments = Assignment.objects(
-        Q(state="states.assigned") & \
+        Q(state=f'states.{state}') & \
         Q(contractor=header.replace('Token ', ''))
     )
-    return jsonify(assignments), 200
 
+    return_type = request.args.get('type')
+
+    if return_type == 'count':
+        # user justs needs the count
+        return jsonify({'count':assignments.count()}), 200
+
+    results = json.loads(assignments.to_json())
+
+    for index, assignment in enumerate(assignments):
+        client = json.loads(assignment.client.to_json())
+        del client['_cls']
+        results[index]['client'] = client
+    
+    return jsonify(results), 200
+
+
+@assignment_blueprint.route('/api/assignment/<path:path>/comment', methods=['POST'])
+def create_assignment_comment(path):
+    header = request.headers.get('Authorization')
+    data = json.loads(request.data)
+    if header is None or data.get('text') is None:
+        return 'error.unauthorized', 401
+    try:
+        assignment = Assignment.objects.get(pk=path)
+        user = User.objects.get(pk=header.replace('Token ', ''))
+    except:
+        return "error.notFound", 404
+    
+    comment = Comment(text=data['text'], user_name=f'{user.first_name} {user.last_name}')
+    assignment.comments.append(comment)
+    assignment.save()
+    
+    return jsonify(assignment), 201
+
+
+@assignment_blueprint.route("/api/assignment/<path:path>/complete")
+def complete_assignments(path):
+    header = request.headers.get('Authorization')
+    if header is None:
+        return 'error.unauthorized', 401
+    try:
+        assignment = Assignment.objects.get(pk=path)
+        contractor = Contractor.objects.get(pk=header.replace('Token ', ''))
+    except:
+        return "error.notFound", 404
+    
+    if str(contractor.id) != str(assignment.contractor.id):
+        return 'error.unauthorized', 401
+    
+    assignment.state = 'states.closed'
+    assignment.save()
+
+    return 'messages.assignmentCompletedSuccessfully', 200

@@ -1,6 +1,8 @@
 import json
 from flask import Blueprint, jsonify, request
 from models.contractor import Contractor
+from models.client import Client
+from models.rating import Rating
 
 user_blueprint = Blueprint('user', __name__)
 
@@ -36,3 +38,37 @@ def create_contractor():
     ).save()
     
     return jsonify(contractor), 201
+
+
+@user_blueprint.route('/api/contractor/<path:path>/rating', methods=['POST'])
+def create_contractor_rating(path):
+    header = request.headers.get('Authorization')
+    if header is None or path == header.replace('Token ', ''):
+        return 'error.unauthorized', 401
+    try:
+        contractor = Contractor.objects.get(pk=path)
+        client = Client.objects.get(pk=header.replace('Token ', ''))
+    except:
+        return "error.notFound", 404
+    
+    record = json.loads(request.data)
+
+    quality = record.get('quality')
+    communication = record.get('communication')
+    shipping = record.get('shipping')
+    
+    # validate form
+    if None in [quality, communication, shipping]:
+        return "error.invalidDataProvided", 400
+
+    rating = Rating(
+        quality=quality,
+        communication=communication,
+        shipping=shipping,
+        client=client
+    )
+
+    contractor.rating.append(rating)
+    contractor.save()
+    
+    return jsonify(rating), 201

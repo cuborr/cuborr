@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 // store
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'src/store';
+import { setPrompt } from 'src/store/layout/actions';
+import { PromptType } from 'src/store/layout/types';
 // components
 import {
     Title,
@@ -22,16 +24,39 @@ import {
 import { Icon } from 'src/components';
 
 interface IContractorItem {
-    item: any
+    item: any;
+    assignmentID: string;
+    state: 'open' | 'assigned' | 'closed';
+    openRatingModal?: (contractorID: string) => void;
 }
 
-export const ContractorItem: React.FC<IContractorItem> = ({ item }) => {
-    const dispatch = useDispatch();
+export const ContractorItem: React.FC<IContractorItem> = ({ item, assignmentID, state, openRatingModal }) => {
     const { t } = useTranslation();
-    const { clientID, contractorID } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const { clientID } = useSelector((state: RootState) => state.user);
 
-    const onClickAcceptApplicant = () => {
+    const onClickAcceptContractor = async () => {
+        const res = await fetch(`/api/assignment/${assignmentID}?accept-contractor=${item._id.$oid}`, {
+            method: 'GET',
+            headers: { Authorization: `Token ${clientID}` }
+        });
+        if (res.status === 200) {
+            dispatch(setPrompt({
+                type: PromptType.Success,
+                duration: 9000,
+                text: t('messages.contractorAcceptedSuccessfully'),
+            }))
+        } else {
+            dispatch(setPrompt({
+                type: PromptType.Error,
+                duration: 4000,
+                text: t('error.unexpectedErrorText'),
+            }))
+        }
+    }
 
+    const onClickRateContractor = () => {
+        if(openRatingModal) openRatingModal(item._id.$oid)
     }
 
     return (
@@ -66,7 +91,7 @@ export const ContractorItem: React.FC<IContractorItem> = ({ item }) => {
             <TableDivider />
 
             {
-                item.averageRating.quality > 0 && (
+                state === 'open' && item.averageRating.quality > 0 && (
                     <RatingRow>
                         <RatingColumn>
                             <StarRow>
@@ -94,8 +119,8 @@ export const ContractorItem: React.FC<IContractorItem> = ({ item }) => {
                     </RatingRow>
                 )
             }
-
-            <StyledButton onClick={onClickAcceptApplicant}>{t('common.accept')}</StyledButton>
+            {state === 'open' && <StyledButton onClick={onClickAcceptContractor}>{t('common.accept')}</StyledButton>}
+            {state === 'closed' && <StyledButton onClick={onClickRateContractor}>{t('common.rate')}</StyledButton>}
         </Container>
     );
 };

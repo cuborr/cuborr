@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Container } from 'src/components';
 import { useClientAssignments } from 'src/data/hooks';
-import { OpenAssignmentItem } from './components/open-assignment-item';
+import { AssignmentItem } from './components/assignment-item';
+import { RatingModal } from './components/rating-modal';
 
 const SyledContainer = styled(Container)`
-  padding-top: var(--navbar-height);
   width: 100%;
+  padding-bottom: var(--margin-l);
 `;
 
 const AssignmentGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: var(--margin-l);
-  grid-column: var(margin-m);
+  grid-column-gap: var(--margin-m);
   margin-top: var(--margin-xl);
 `
 
@@ -22,33 +23,62 @@ const Title = styled.h1`
   font-size: 2.6rem;
   font-weight: 700;
   color: var(--color-text-light);
+  margin-top: var(--margin-xxl);
 `
 
 const PlaceholderText = styled.p`
-  margin: var(--margin-l) 0;
+  margin: var(--margin-xl) 0;
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-text-dark);
-  text-align: center;
+  max-width: 60%;
+  line-height: 1.5rem;
 `
 
 
 export const ClientAssignment = () => {
   let { t } = useTranslation();
-  const { assignments, isLoading } = useClientAssignments()
+  const [modalContractorID, setModalContractorID] = React.useState('')
+  const { assignments: openAssignments, isLoading: openIsLoading } = useClientAssignments()
+  const { assignments, isLoading } = useClientAssignments('assigned')
+  const { assignments: closedAssignments, isLoading: closedIsLoading } = useClientAssignments('closed')
 
-  console.log(assignments)
+  const closeModal = () => setModalContractorID('')
+
+  const openRatingModal = (contractorID: string) => setModalContractorID(contractorID)
 
   return (
     <SyledContainer>
-      <Title>Offene Aufträge</Title>
-      {!isLoading && assignments?.length === 0 && <PlaceholderText>Aktuell sind keine offenen Aufträge vorhanden, lade neue 3-D Models hoch um Bewerbungen zu erhalten</PlaceholderText>}
+      <Title>{t('common.openAssignments')}</Title>
+      {!openIsLoading && openAssignments?.length === 0 && <PlaceholderText>{t('common.openAssingmentsPlaceholder')}</PlaceholderText>}
       <AssignmentGrid>
-        {assignments?.map((item) => (
-          <OpenAssignmentItem item={item} key={item._id.$oid} />
+        {openAssignments?.map((item) => (
+          <AssignmentItem item={item} key={item._id.$oid} state="open" />
         ))}
       </AssignmentGrid>
 
+      <Title>{t('common.assignmentsInProzess')}</Title>
+      {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.assignmentsInProzessPlaceholder')}</PlaceholderText>}
+      <AssignmentGrid>
+        {assignments?.map((item) => (
+          <AssignmentItem item={item} key={item._id.$oid} state="assigned" />
+        ))}
+      </AssignmentGrid>
+
+      <Title>{t('common.closedAssignments')}</Title>
+      {!closedIsLoading && closedAssignments?.length === 0 && <PlaceholderText>{t('common.closedAssignmentsPlaceholder')}</PlaceholderText>}
+      <AssignmentGrid>
+        {closedAssignments?.map((item) => (
+          <AssignmentItem
+            item={item}
+            key={item._id.$oid}
+            state="closed"
+            openRatingModal={openRatingModal}
+          />
+        ))}
+      </AssignmentGrid>
+
+      {modalContractorID !== '' && <RatingModal contractorID={modalContractorID} close={closeModal} />}
     </SyledContainer>
   );
 };

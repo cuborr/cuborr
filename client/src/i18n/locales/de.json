@@ -30,7 +30,19 @@
         "accept": "Annehmen",
         "quality": "Qualität",
         "communication": "Kommunikation",
-        "shipping": "Versand"
+        "shipping": "Versand",
+        "openAssignments": "Offene Aufträge",
+        "openAssingmentsPlaceholder": "Aktuell sind keine offenen Aufträge vorhanden, lade neue 3-D Models hoch um Bewerbungen zu erhalten",
+        "assignmentsInProzess": "Aufträge in Bearbeitung",
+        "assignmentsInProzessPlaceholder": "Aktuell sind keine Aufträge in Bearbeitung, akzeptiere Auftragnehmer damit Deine Projekte bearbeitet werden",
+        "yourAssignments": "Deine Aufträge",
+        "yourAssignmentsPlaceholder": "Aktuell sind keine Aufträge offen, bewerbe Dich bei Projekten auf der Home Page um mehr zu bearbeiten",
+        "closedAssignments": "Abgeschlossene Aufträge",
+        "closedAssignmentsPlaceholder": "Aufräge werden hier abgelegt sobald ein Auftragnehmer Deine Bestellung abgeschlossen hat und die Zahlung durchgeführt wurde",
+        "closedAssignmentsPlaceholderContractor": "Aufräge werden hier abgelegt sobald Du Deine offenen Aufträge abgeschlossen hast und die Zahlung durchgeführt wurde",
+        "assignmentCompleted": "Auftrag wurde versendet",
+        "rate": "Bewerten",
+        "rateUser": "Benutzer Bewerten"
     },
     "home": {
         "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
@@ -41,7 +53,8 @@
         "nameTitle": "Wie sollen wir Dich nennen?",
         "addressTitle": "Wie ist Deine Lieferadresse?",
         "contactTitle": "Kontakt für den Hersteller",
-        "assignmentTitle": "Dein Auftrag"
+        "assignmentTitle": "Dein Auftrag",
+        "writeComment": "Schreibe einen Kommentar"
     },
     "contractor": {
         "nameTitle": "Wie sollen wir Dich nennen?",
@@ -63,7 +76,11 @@
         "assignmentCreatedSuccessfully": "Dein Auftrag wurde erfolgreich erstellt",
         "assignmentDeletedSuccessfully": "Dein Auftrag wurde erfolgreich gelöscht",
         "contractorCreatedSucessfully": "Dein Durcker wurde erfolreich registriert, du kannst nun Aufträge annehmen",
-        "applicationCreatedSccessfully": "Deine Bewerbung wurde erfolgreich eingereicht"
+        "applicationCreatedSccessfully": "Deine Bewerbung wurde erfolgreich eingereicht",
+        "commentCreatedSuccessfully": "Dein Kommentar wurde erfolgreich hinterlegt",
+        "contractorAcceptedSuccessfully": "Der Benutzer wurde erfolgreich als Auftragnehmer hinzugefügt. Bitte beachte, dass die Zahlung aktuell nicht über die Platform erfolgt, bitte regele dies direkt mit dem Auftragnehmer",
+        "assignmentCompletedSuccessfully": "Du hast den Auftrag erfolgriech abgeschlossen. Bitte beachte, dass die Zahlung aktuell nicht über die Platform erfolgt, bitte regele dies direkt mit dem Auftraggeber",
+        "ratingCreatedSuccessfully": "Deine Bewertung wurde erfolgreich eingereicht"
     },
     "alert": {
         "deleteAssignmentTitle": "Auftrag löschen",

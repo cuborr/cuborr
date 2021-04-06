@@ -39,7 +39,7 @@ export const useAssignments = () => {
 };
 
 
-export const useClientAssignments = () => {
+export const useClientAssignments = (state = 'open') => {
   const history = useHistory()
   const [assignments, setAssignments] = React.useState<any>();
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
@@ -49,17 +49,17 @@ export const useClientAssignments = () => {
     const retrieveAssignments = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch('/api/client/assignments', getConfig(clientID));
+        const res = await fetch(`/api/client/assignments?state=${state}`, getConfig(clientID));
         setIsLoading(false);
         if (res.status === 200) {
           const data = await res.json();
           setAssignments(data)
         } else {
-          logger.error(`GET "/api/client/assignments" `);
+          logger.error(`GET "/api/client/assignments?state=${state}" `);
           history.push('/unexpected-error');
         }
       } catch (e) {
-        logger.error(`GET "/api/client/assignments" `);
+        logger.error(`GET "/api/client/assignments?state=${state}" `);
         history.push('/unexpected-error');
       }
     };
@@ -72,7 +72,7 @@ export const useClientAssignments = () => {
 };
 
 
-export const useContractorAssignments = () => {
+export const useContractorAssignments = (state = 'assigned') => {
   const history = useHistory()
   const [assignments, setAssignments] = React.useState<any>();
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
@@ -82,17 +82,17 @@ export const useContractorAssignments = () => {
     const retrieveAssignments = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch('/api/contractor/assignments', getConfig(contractorID));
+        const res = await fetch(`/api/contractor/assignments?state=${state}`, getConfig(contractorID));
         setIsLoading(false);
         if (res.status === 200) {
           const data = await res.json();
           setAssignments(data)
         } else {
-          logger.error(`GET "/api/contractor/assignments" `);
+          logger.error(`GET "/api/contractor/assignments?state=${state}" `);
           history.push('/unexpected-error');
         }
       } catch (e) {
-        logger.error(`GET "/api/contractor/assignments" `);
+        logger.error(`GET "/api/contractor/assignments?state=${state}" `);
         history.push('/unexpected-error');
       }
     };

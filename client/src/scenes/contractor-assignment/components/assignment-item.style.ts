@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Icon, Input } from 'src/components';
+import { Input } from 'src/components';
 
 export const Container = styled.div`
     position: relative;
@@ -82,16 +82,6 @@ export const Notes = styled.p`
     -webkit-box-orient: vertical;
 `
 
-export const StyledIcon = styled(Icon)`
-    position: absolute;
-    top: var(--margin-l);
-    right: var(--margin-m);
-    cursor: pointer;
-    svg {
-        fill: var(--color-text-light);
-    }
-`;
-
 export const InputRow = styled.div`
     position: relative;
     display: flex;
@@ -99,6 +89,9 @@ export const InputRow = styled.div`
     margin-top: var(--margin-xl);
     div:nth-child(1) {
         flex: 1;
+        input {
+            z-index: 2;
+        }
     }
 
 `
@@ -112,14 +105,27 @@ export const SendButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 0;
     top: 0;
     right: 0;
     svg {
         fill: var(--color-green);
     }
     width: 25pt;
+    height: 35pt;
     cursor: pointer;
-
+    z-index: 3;
 `
 
+export const CommentUserName = styled.div`
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-top: var(--margin-m);
+`
+
+export const Comment = styled.div`
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    margin-top: var(--margin-s);
+`

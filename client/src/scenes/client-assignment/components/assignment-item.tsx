@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 // store
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'src/store';
+import { setAlert, setPrompt } from 'src/store/layout/actions';
+import { PromptType } from 'src/store/layout/types';
 // components
 import {
     Container,
@@ -19,21 +21,23 @@ import {
     StyledInput,
     SendButton,
     InputRow,
-} from './open-assignment-item.style';
+    CommentUserName,
+    Comment
+} from './assignment-item.style';
 import { getCurrency } from 'src/services/currency';
-import { setAlert, setPrompt } from 'src/store/layout/actions';
-import { PromptType } from 'src/store/layout/types';
 import { ContractorItem } from './contractor-item';
 import { Icon } from 'src/components';
 
 interface IAssignmentItem {
     item: any
+    state: 'open' | 'assigned' | 'closed';
+    openRatingModal?: (contractorID: string) => void;
 }
 
-export const OpenAssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
+export const AssignmentItem: React.FC<IAssignmentItem> = ({ item, state, openRatingModal }) => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
-    const { clientID, contractorID } = useSelector((state: RootState) => state.user);
+    const { clientID } = useSelector((state: RootState) => state.user);
     const [comment, setComment] = React.useState<string>("")
 
     const onClickRemove = async () => {
@@ -74,8 +78,28 @@ export const OpenAssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
         }))
     }
 
-    const onClickSendComment = () => {
-
+    const onClickSendComment = async () => {
+        const res = await fetch(`/api/assignment/${item._id.$oid}/comment`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Token ${clientID}`
+            },
+            body: JSON.stringify({ text: comment })
+        });
+        if (res.status === 201) {
+            setComment('')
+            dispatch(setPrompt({
+                type: PromptType.Success,
+                duration: 4000,
+                text: t('messages.commentCreatedSuccessfully'),
+            }));
+        } else {
+            dispatch(setPrompt({
+                type: PromptType.Error,
+                duration: 4000,
+                text: t('error.unexpectedErrorText'),
+            }));
+        }
     }
 
     return (
@@ -83,7 +107,7 @@ export const OpenAssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
             <Title>
                 {item.title}
             </Title>
-            <StyledIcon name="close" onClick={onClickRemove} size="18pt" />
+            {state === 'open' && <StyledIcon name="close" onClick={onClickRemove} size="18pt" />}
             <CompensationRow>
                 <Compensation>
                     {item.compensation}
@@ -94,10 +118,14 @@ export const OpenAssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
             </CompensationRow>
             <Divider />
             <Label>{t('common.compensation').toUpperCase()}</Label>
-            <Number>{item.applicants.length}</Number>
-            <Divider />
-            <Label>{t('common.applicants').toUpperCase()}</Label>
-            <Number>{item.comments.length}</Number>
+            {state === 'open' && (
+                <>
+                    <Number>{item.applicants?.length}</Number>
+                    <Divider />
+                    <Label>{t('common.applicants').toUpperCase()}</Label>
+                </>
+            )}
+            <Number>{item.comments?.length}</Number>
             <Divider />
             <Label>{t('common.comments').toUpperCase()}</Label>
             {item.notes !== undefined && (
@@ -110,15 +138,40 @@ export const OpenAssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
                     </Notes>
                 </>
             )}
-            {item.applicants.map(applicant => (
-                <ContractorItem item={applicant} key={applicant._id.$oid} />
+            {state === 'open' && item.applicants?.map(applicant => (
+                <ContractorItem
+                    item={applicant}
+                    key={applicant._id.$oid}
+                    assignmentID={item._id.$oid}
+                    state="open"
+                />
             ))}
-            <InputRow>
-                <StyledInput value={comment} onChange={setComment} label="Write a comment" />
-                <SendButton onClick={onClickSendComment}>
-                    <Icon name="send" size="16pt" />
-                </SendButton>
-            </InputRow>
+            {state !== 'open' && (
+                <ContractorItem
+                    item={item.contractor}
+                    assignmentID={item._id.$oid}
+                    state={state}
+                    openRatingModal={openRatingModal}
+                />
+            )}
+            {state !== 'closed' && (
+                <InputRow>
+                    <StyledInput
+                        value={comment}
+                        onChange={setComment}
+                        label={t('assignment.writeComment')}
+                    />
+                    <SendButton onClick={onClickSendComment}>
+                        <Icon name="send" size="16pt" />
+                    </SendButton>
+                </InputRow>
+            )}
+            {item.comments.map((comment, index) => (
+                <div key={index}>
+                    <CommentUserName>{comment.user_name}</CommentUserName>
+                    <Comment>{comment.text}</Comment>
+                </div>
+            ))}
         </Container>
     );
 };

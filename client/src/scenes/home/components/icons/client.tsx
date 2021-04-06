@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useClientAssignments } from 'src/data/hooks';
 // assets
 import { Icon } from 'src/components';
-
+// store
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/store';
 
 const Container = styled(Link)`
     position: relative;
@@ -40,15 +41,29 @@ const Text = styled.p`
     color: var(--color-bg-dark);
 `
 export const ClientIcon: React.FC = () => {
-    const { assignments } = useClientAssignments()
+    const { clientID } = useSelector((state: RootState) => state.user);
+    const [count, setCount] = React.useState(0);
+    React.useEffect(() => {
+        const retrieveAssignmentCount = async () => {
+            const res = await fetch(`/api/client/assignments?type=count`, {
+                method: 'GET',
+                headers: { Authorization: `Token ${clientID}` }
+            });
+            if(res.status === 200) {
+                const data = await res.json()
+                setCount(data.count)
+            }
+        }
+        retrieveAssignmentCount()
+    })
 
     return (
         <Container to="/client/assignments">
             <StyledIcon name="print" size="18pt" />
             {
-                assignments?.length > 0 && (
+                count > 0 && (
                     <Circle>
-                        <Text>{assignments.length}</Text>
+                        <Text>{count}</Text>
                     </Circle>
                 )
             }
