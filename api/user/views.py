@@ -61,14 +61,19 @@ def create_contractor_rating(path):
     if None in [quality, communication, shipping]:
         return "error.invalidDataProvided", 400
 
-    rating = Rating(
-        quality=quality,
-        communication=communication,
-        shipping=shipping,
-        client=client
-    )
+    try:
+        # find existing rating
+        Contractor.objects.get(rating__client=header.replace('Token ', ''), pk=path)
+        rating = {}
+    except:
+        rating = Rating(
+            quality=quality,
+            communication=communication,
+            shipping=shipping,
+            client=client
+        )
 
-    contractor.rating.append(rating)
-    contractor.save()
+        contractor.rating.append(rating)
+        contractor.save()
     
     return jsonify(rating), 201

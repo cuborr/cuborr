@@ -6,7 +6,7 @@ import { useAssignments } from 'src/data/hooks';
 import { openModal } from 'src/store/layout/actions';
 import { RootState } from 'src/store';
 // components
-import { VectorGraphic, AssignmentItem } from 'src/components';
+import { VectorGraphic, AssignmentItem, Footer } from 'src/components';
 import { AssignmentForm, ContractorForm, ClientIcon, ContractorIcon } from './components';
 import {
   BackgroundImage,
@@ -37,7 +37,13 @@ export const Home: React.FC = () => {
   const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
   const onClickRegisterPrinter = () => dispatch(openModal(<ContractorForm />));
 
-  console.log(assignments)
+  const onChangeLanguage = () => {
+    if (i18n.language === 'de') {
+      i18n.changeLanguage('en')
+    } else {
+      i18n.changeLanguage('de')
+    }
+  }
 
   return (
     <div>
@@ -48,9 +54,9 @@ export const Home: React.FC = () => {
             <VectorGraphic name="shapex" height="32pt" />
           </NavAbsolutContainer>
           <NavRow>
-            {i18n.language === 'de' ? <NavLink>{"en "}</NavLink> : "en "}
+            {i18n.language === 'de' ? <NavLink onClick={onChangeLanguage}>{"en "}</NavLink> : "en "}
             {"|"}
-            {i18n.language === 'en' ? <NavLink>{" de"}</NavLink> : " de"}
+            {i18n.language === 'en' ? <NavLink onClick={onChangeLanguage}>{" de"}</NavLink> : " de"}
           </NavRow>
           {!clientID && !contractorID && (
             <NavLink onClick={onClickRegisterPrinter}>
@@ -93,6 +99,7 @@ export const Home: React.FC = () => {
           ))}
         </AssignmentsGrid>
       </StyledAssignmentContainer>
+      <Footer />
     </div>
   );
 };

@@ -38,8 +38,8 @@
         "yourAssignments": "Deine Aufträge",
         "yourAssignmentsPlaceholder": "Aktuell sind keine Aufträge offen, bewerbe Dich bei Projekten auf der Home Page um mehr zu bearbeiten",
         "closedAssignments": "Abgeschlossene Aufträge",
-        "closedAssignmentsPlaceholder": "Aufräge werden hier abgelegt sobald ein Auftragnehmer Deine Bestellung abgeschlossen hat und die Zahlung durchgeführt wurde",
-        "closedAssignmentsPlaceholderContractor": "Aufräge werden hier abgelegt sobald Du Deine offenen Aufträge abgeschlossen hast und die Zahlung durchgeführt wurde",
+        "closedAssignmentsPlaceholder": "Aufträge werden hier abgelegt sobald ein Auftragnehmer Deine Bestellung abgeschlossen hat und die Zahlung durchgeführt wurde",
+        "closedAssignmentsPlaceholderContractor": "Aufträge werden hier abgelegt sobald Du Deine offenen Aufträge abgeschlossen hast und die Zahlung durchgeführt wurde",
         "assignmentCompleted": "Auftrag wurde versendet",
         "rate": "Bewerten",
         "rateUser": "Benutzer Bewerten"
@@ -47,7 +47,7 @@
     "home": {
         "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
         "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Model zum günstigsten 💰",
-        "insentive1": "Verdiene mit Deinem ungenutzen Drucker 💸 und beteilige Dich and spannenden Projekten"
+        "insentive1": "Verdiene mit Deinem ungenutzten Drucker 💸 und beteilige Dich and spannenden Projekten"
     },
     "assignment": {
         "nameTitle": "Wie sollen wir Dich nennen?",
@@ -67,7 +67,7 @@
         "notFoundText": "Wir konnten die Seite nach der du suchst leider nicht ausfindig machen",
         "unexpectedError": "Ooops",
         "unexpectedErrorText": "Da ist wohl etwas schief gelaufen, bitte versuche es noch einmal",
-        "invalidDataProvided": "Die verwendeten Eingaben sind nicht zulässig, bitte versuche es nocheinmal",
+        "invalidDataProvided": "Die verwendeten Eingaben sind nicht zulässig, bitte versuche es noch einmal",
         "noFileProvided": "Es wurde keine Datei bereitgestellt",
         "invalidFile": "Eine ungültige Datei wurde bereitgestellt",
         "unauthorized": "Du bist nicht dazu berechtigt diese Aktion durchzuführen"
@@ -75,15 +75,23 @@
     "messages": {
         "assignmentCreatedSuccessfully": "Dein Auftrag wurde erfolgreich erstellt",
         "assignmentDeletedSuccessfully": "Dein Auftrag wurde erfolgreich gelöscht",
-        "contractorCreatedSucessfully": "Dein Durcker wurde erfolreich registriert, du kannst nun Aufträge annehmen",
+        "contractorCreatedSucessfully": "Dein Drucker wurde erfolgreich registriert, du kannst nun Aufträge annehmen",
         "applicationCreatedSccessfully": "Deine Bewerbung wurde erfolgreich eingereicht",
         "commentCreatedSuccessfully": "Dein Kommentar wurde erfolgreich hinterlegt",
         "contractorAcceptedSuccessfully": "Der Benutzer wurde erfolgreich als Auftragnehmer hinzugefügt. Bitte beachte, dass die Zahlung aktuell nicht über die Platform erfolgt, bitte regele dies direkt mit dem Auftragnehmer",
-        "assignmentCompletedSuccessfully": "Du hast den Auftrag erfolgriech abgeschlossen. Bitte beachte, dass die Zahlung aktuell nicht über die Platform erfolgt, bitte regele dies direkt mit dem Auftraggeber",
+        "assignmentCompletedSuccessfully": "Du hast den Auftrag erfolgreich abgeschlossen. Bitte beachte, dass die Zahlung aktuell nicht über die Platform erfolgt, bitte regele dies direkt mit dem Auftraggeber",
         "ratingCreatedSuccessfully": "Deine Bewertung wurde erfolgreich eingereicht"
     },
     "alert": {
         "deleteAssignmentTitle": "Auftrag löschen",
         "deleteAssignmentText": "Bist du dir sicher, dass du diesen Auftrag löschen willst?"
+    },
+    "footer": {
+        "legal": "Rechtliches",
+        "companyDetails": "Impressum",
+        "privacyPolicy": "Datenschutzerklärung",
+        "founders": "Gründer",
+        "external": "Extern",
+        "note": "Diese Website ist Open-Source und Non-Profit. Wenn du gerne bei der Entwicklung helfen möchtest, kannst du gerne über GitHub einen 'Merge Request' einreichen. Andernfalls würden wir uns auch sehr über eine Spende freuen. Dieses Projekt wurde im Zusammenhang mit dem 5-Euro-Business an der Hochschule Kempten umgesetzt."
     }
 }

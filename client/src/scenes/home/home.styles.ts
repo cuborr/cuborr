@@ -35,7 +35,7 @@ export const NavLink = styled.p`
   font-size: 16px;
   color: var(--color-text-light);
   font-weight: 600;
-  margin-right: 5px;
+  margin: 0 5px;
   cursor: pointer;
   z-index: 1;
 `

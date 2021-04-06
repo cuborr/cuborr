@@ -7,3 +7,4 @@ export * from './icons/icons';
 export * from './vector-graphics/vector-graphics';
 export * from './bar-chart/bar';
 export * from './assignment-item/assignment-item';
+export * from './footer/footer';

@@ -1,11 +1,97 @@
 {
     "common": {
-        "helloWorld": "Hello World"
+        "createAssignmentNow": "Create Assignment now",
+        "registerPrinter": "Register Printer",
+        "next": "Next",
+        "submit": "Submit",
+        "select": "Select",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "streetAddress": "Street Address",
+        "city": "City",
+        "zip": "ZIP",
+        "country": "Country",
+        "phoneNumber": "Phone Number",
+        "email": "eMail",
+        "title": "Title",
+        "compensation": "Compensation",
+        "currency": "Currency",
+        "notesOptional": "Notes (optional)",
+        "applicants": "Applicants",
+        "comments": "Comments",
+        "notes": "Notes",
+        "download": "Download",
+        "apply": "Apply",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "printerName": "Printer Name",
+        "itemNumber": "Item Number",
+        "materials": "Materials",
+        "accept": "Accept",
+        "quality": "Quality",
+        "communication": "Communication",
+        "shipping": "Shipping",
+        "openAssignments": "Open Assignments",
+        "openAssingmentsPlaceholder": "Currently there are no open assignments, upload new 3-D models to receive applications",
+        "assignmentsInProzess": "Assignments in Process",
+        "assignmentsInProzessPlaceholder": "Currently there are no orders in progress, accept contractors so that your projects are processed",
+        "yourAssignments": "Your Assignments",
+        "yourAssignmentsPlaceholder": "Currently there are no assignments open, apply for projects on the home page to work on more",
+        "closedAssignments": "Closed Assignments",
+        "closedAssignmentsPlaceholder": "Assignments are placed here as soon as a contractor has completed your order and payment has been made",
+        "closedAssignmentsPlaceholderContractor": "Assignments are stored here as soon as you have completed your open orders and the payment has been made",
+        "assignmentCompleted": "Assignment Completed",
+        "rate": "Rate",
+        "rateUser": "Rate User"
+    },
+    "home": {
+        "broker": "We arrange <strong>3D printing orders</strong>",
+        "insentive0": "Test the printers of the community and realize your 3D model at the best 💰",
+        "insentive1": "Earn 💸 with your unused printer and participate in exciting projects"
+    },
+    "assignment": {
+        "nameTitle": "What should we call you?",
+        "addressTitle": "What is your shipping address?",
+        "contactTitle": "Contact for the manufacturer",
+        "assignmentTitle": "Order Title",
+        "writeComment": "Write a comment"
+    },
+    "contractor": {
+        "nameTitle": "What should we call you?",
+        "printerTitle": "What can you say about your printer?",
+        "contactTitle": "Contact for customers",
+        "commonFilaments": "All common filaments"
     },
     "error": {
-        "notFound": "Not found",
+        "notFound": "Not Found",
         "notFoundText": "We could not find the page you are looking for",
         "unexpectedError": "Ooops",
-        "unexpectedErrorText": "Something must have gone wrong, please try again"
+        "unexpectedErrorText": "Something must have gone wrong, please try again",
+        "invalidDataProvided": "The used inputs are not allowed, please try again",
+        "noFileProvided": "No file was provided",
+        "invalidFile": "An invalid file was provided",
+        "unauthorized": "You are not authorized to perform this action"
+    },
+    "messages": {
+        "assignmentCreatedSuccessfully": "Your order was successfully created",
+        "assignmentDeletedSuccessfully": "Your order was successfully deleted",
+        "contractorCreatedSucessfully": "Your printer has been successfully registered, you can now accept jobs",
+        "applicationCreatedSccessfully": "Your application was successfully submitted",
+        "commentCreatedSuccessfully": "Your comment was successfully submitted",
+        "contractorAcceptedSuccessfully": "The user has been successfully added as a contractor. Please note that the payment is currently not made through the platform, please arrange this directly with the contractor.",
+        "assignmentCompletedSuccessfully": "You have successfully completed the order. Please note that the payment is currently not made via the platform, please arrange this directly with the client.",
+        "ratingCreatedSuccessfully": "Your rating was successfully submitted"
+    },
+    "alert": {
+        "deleteAssignmentTitle": "Delete Assignment",
+        "deleteAssignmentText": "Are you sure you want to delete this assignment?"
+    },
+    "footer": {
+        "legal": "Legal",
+        "companyDetails": "Company Details",
+        "privacyPolicy": "Privacy Policy",
+        "founders": "Founders",
+        "external": "External",
+        "note": "This website is open source and non-profit. If you would like to help with development, feel free to submit a merge request via GitHub. Otherwise, we would also greatly appreciate a donation. This project was implemented in connection with the 5-Euro-Business at the University of Applied Sciences Kempten."
     }
 }

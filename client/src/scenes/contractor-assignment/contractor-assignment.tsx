@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Container } from 'src/components';
+import { Container, Footer } from 'src/components';
 import { useContractorAssignments } from 'src/data/hooks';
 import { AssignmentItem } from './components/assignment-item';
 
 const SyledContainer = styled(Container)`
-  width: 100%;
-  padding-bottom: var(--margin-l);
+  min-height: 100vh;
 `;
 
 const AssignmentGrid = styled.div`
@@ -41,23 +40,26 @@ export const ContractorAssignment = () => {
   const { assignments: closedAssignments, isLoading: closedIsLoading } = useContractorAssignments('closed')
 
   return (
-    <SyledContainer>
-      <Title>{t('common.yourAssignments')}</Title>
-      {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.yourAssignmentsPlaceholder')}</PlaceholderText>}
-      <AssignmentGrid>
-        {assignments?.map((item) => (
-          <AssignmentItem item={item} key={item._id.$oid} state="assigned" />
-        ))}
-      </AssignmentGrid>
+    <div>
+      <SyledContainer>
+        <Title>{t('common.yourAssignments')}</Title>
+        {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.yourAssignmentsPlaceholder')}</PlaceholderText>}
+        <AssignmentGrid>
+          {assignments?.map((item) => (
+            <AssignmentItem item={item} key={item._id.$oid} state="assigned" />
+          ))}
+        </AssignmentGrid>
 
-      <Title>{t('common.closedAssignments')}</Title>
-      {!closedIsLoading && closedAssignments?.length === 0 && <PlaceholderText>{t('common.closedAssignmentsPlaceholderContractor')}</PlaceholderText>}
-      <AssignmentGrid>
-        {closedAssignments?.map((item) => (
-          <AssignmentItem item={item} key={item._id.$oid} state="closed" />
-        ))}
-      </AssignmentGrid>
+        <Title>{t('common.closedAssignments')}</Title>
+        {!closedIsLoading && closedAssignments?.length === 0 && <PlaceholderText>{t('common.closedAssignmentsPlaceholderContractor')}</PlaceholderText>}
+        <AssignmentGrid>
+          {closedAssignments?.map((item) => (
+            <AssignmentItem item={item} key={item._id.$oid} state="closed" />
+          ))}
+        </AssignmentGrid>
 
-    </SyledContainer>
+      </SyledContainer>
+      <Footer />
+    </div>
   );
 };

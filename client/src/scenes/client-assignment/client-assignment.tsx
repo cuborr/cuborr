@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Container } from 'src/components';
+import { Container, Footer } from 'src/components';
 import { useClientAssignments } from 'src/data/hooks';
 import { AssignmentItem } from './components/assignment-item';
 import { RatingModal } from './components/rating-modal';
 
+
 const SyledContainer = styled(Container)`
-  width: 100%;
-  padding-bottom: var(--margin-l);
+  min-height: 100vh;
 `;
 
 const AssignmentGrid = styled.div`
@@ -48,37 +48,40 @@ export const ClientAssignment = () => {
   const openRatingModal = (contractorID: string) => setModalContractorID(contractorID)
 
   return (
-    <SyledContainer>
-      <Title>{t('common.openAssignments')}</Title>
-      {!openIsLoading && openAssignments?.length === 0 && <PlaceholderText>{t('common.openAssingmentsPlaceholder')}</PlaceholderText>}
-      <AssignmentGrid>
-        {openAssignments?.map((item) => (
-          <AssignmentItem item={item} key={item._id.$oid} state="open" />
-        ))}
-      </AssignmentGrid>
+    <div>
+      <SyledContainer>
+        <Title>{t('common.openAssignments')}</Title>
+        {!openIsLoading && openAssignments?.length === 0 && <PlaceholderText>{t('common.openAssingmentsPlaceholder')}</PlaceholderText>}
+        <AssignmentGrid>
+          {openAssignments?.map((item) => (
+            <AssignmentItem item={item} key={item._id.$oid} state="open" />
+          ))}
+        </AssignmentGrid>
 
-      <Title>{t('common.assignmentsInProzess')}</Title>
-      {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.assignmentsInProzessPlaceholder')}</PlaceholderText>}
-      <AssignmentGrid>
-        {assignments?.map((item) => (
-          <AssignmentItem item={item} key={item._id.$oid} state="assigned" />
-        ))}
-      </AssignmentGrid>
+        <Title>{t('common.assignmentsInProzess')}</Title>
+        {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.assignmentsInProzessPlaceholder')}</PlaceholderText>}
+        <AssignmentGrid>
+          {assignments?.map((item) => (
+            <AssignmentItem item={item} key={item._id.$oid} state="assigned" />
+          ))}
+        </AssignmentGrid>
 
-      <Title>{t('common.closedAssignments')}</Title>
-      {!closedIsLoading && closedAssignments?.length === 0 && <PlaceholderText>{t('common.closedAssignmentsPlaceholder')}</PlaceholderText>}
-      <AssignmentGrid>
-        {closedAssignments?.map((item) => (
-          <AssignmentItem
-            item={item}
-            key={item._id.$oid}
-            state="closed"
-            openRatingModal={openRatingModal}
-          />
-        ))}
-      </AssignmentGrid>
+        <Title>{t('common.closedAssignments')}</Title>
+        {!closedIsLoading && closedAssignments?.length === 0 && <PlaceholderText>{t('common.closedAssignmentsPlaceholder')}</PlaceholderText>}
+        <AssignmentGrid>
+          {closedAssignments?.map((item) => (
+            <AssignmentItem
+              item={item}
+              key={item._id.$oid}
+              state="closed"
+              openRatingModal={openRatingModal}
+            />
+          ))}
+        </AssignmentGrid>
 
-      {modalContractorID !== '' && <RatingModal contractorID={modalContractorID} close={closeModal} />}
-    </SyledContainer>
+        {modalContractorID !== '' && <RatingModal contractorID={modalContractorID} close={closeModal} />}
+      </SyledContainer>
+      <Footer />
+    </div>
   );
 };
