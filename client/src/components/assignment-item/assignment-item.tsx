@@ -145,7 +145,7 @@ export const AssignmentItem: React.FC<IAssignmentItem> = ({ item }) => {
             </div>
             {contractorID != undefined && (
                 <ButtonRow>
-                    <a href={`http://localhost:5000/api/assignment/download/${item.file}`} download>
+                    <a href={`https://cuborr.com/api/assignment/download/${item.file}`} download>
                         <SecondaryButton onClick={() => null}>{t('common.download')}</SecondaryButton>
                     </a>
                     <PrimaryButton active={isActive} onClick={onClickApply}>{t('common.apply')}</PrimaryButton>

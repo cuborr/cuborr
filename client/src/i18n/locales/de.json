@@ -45,9 +45,9 @@
         "rateUser": "Benutzer Bewerten"
     },
     "home": {
-        "broker": "Wir vermitteln <strong>3D Druckaufträge</strong>",
-        "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Model zum günstigsten 💰",
-        "insentive1": "Verdiene mit Deinem ungenutzten Drucker 💸 und beteilige Dich and spannenden Projekten"
+        "broker": "Wir vermitteln <strong>3D-Druckaufträge</strong>",
+        "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Modell zum günstigsten 💰",
+        "insentive1": "Verdiene mit Deinem ungenutzten Drucker 💸 und beteilige Dich an spannenden Projekten"
     },
     "assignment": {
         "nameTitle": "Wie sollen wir Dich nennen?",
