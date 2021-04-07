@@ -24,7 +24,7 @@ if not os.path.exists(BaseConfig.UPLOAD_DIRECTORY):
 
 # create app
 app = Flask(__name__, static_folder="./client/build")
-cors = CORS(app, resources={r"/api/*": {"origins": ["http://cuborr.com", "http://www.cuborr.com"]}})
+cors = CORS(app, resources={r"/api/*": {"origins": ["http://cuborr.com", "http://www.cuborr.com", "https://www.cuborr.com"]}})
 
 # Load this config object for development mode
 app.config.from_object(CONFIG_PATH)
