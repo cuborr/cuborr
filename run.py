@@ -1,6 +1,7 @@
 import os
 from flask import (send_from_directory,
                    jsonify, render_template, request, abort, Flask)
+from flask_cors import CORS
 from configurations import BaseConfig
 from models.database import db
 from api.assignment.views import assignment_blueprint
@@ -23,6 +24,7 @@ if not os.path.exists(BaseConfig.UPLOAD_DIRECTORY):
 
 # create app
 app = Flask(__name__, static_folder="./client/build")
+cors = CORS(app, resources={r"/api/*": {"origins": ["http://cuborr.com", "http://www.cuborr.com"]}})
 
 # Load this config object for development mode
 app.config.from_object(CONFIG_PATH)

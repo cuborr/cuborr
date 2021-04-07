@@ -1,9 +1,6 @@
 FROM python:3.8-slim
 
 ENV PYTHONUNBUFFERED=1
-
-# install system dependencies
-RUN apk --update add gcc
     
 RUN pip install --upgrade pip
 
