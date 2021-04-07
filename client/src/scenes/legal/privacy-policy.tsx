@@ -38,16 +38,10 @@ export const PrivacyPolicy = () => {
             <Navbar />
             <StyledContainer>
                 <Title>Datenschutzerklärung</Title>
-                <Text>Dieses Projekt ist Open-Source wie welche Daten genau gespeichert werden kannst du dir auf GitHub ansehen.</Text>
-                <Text>Wir verwenden keine Cookies, solange du keien Auftrag erstellst oder einen Drucker
-                    registrierst liegen uns keine Informationen zu dir vor. Wenn du jedoch diese Fuktionen
-                    verwendest speichern wir in der Local Storage auf deinem Browser eine automatisch generierte ID
-                    für dich ab. Diese ID wird anschlißend immer als referenz verwendet wenn du mit der Platform interagierst.</Text>
-                <Text>Was wir über dich speichern? Alles was du freiwillig angibst: Vorname, Nachname, Land, Email, Telefonnummer, Adresse, Stadt, Postleitzahl</Text>
-                <Text>Falls du dich dazu entscheiden solltest die Platform nicht mehr zu nutzen hast du selbstverständlich das
-                    Recht auf eine vollständige Löschung deiner Daten, dazu benötigen wir deinen Namen und deine Adresse.
-                    Solltest du einen neuen Account erstellen wollen würden wir dir empfehlen die Local Storage zu leeren.
-                    Danach können wir deinen Browser nicht mehr zuweisen. Viel Spaß beim verwenden der Cuborr Platform</Text>
+                <Text>Dieses Projekt ist Open-Source. Welche Daten wie genau gespeichert werden, kannst du dir auf GitHub ansehen.</Text>
+                <Text>Wir verwenden keine Cookies, solange du keinen Auftrag erstellst und keinen Drucker registrierst, dann liegen uns keine Informationen zu dir vor. Wenn du jedoch diese Funktionen verwendest, speichern wir in der Local Storage auf deinem Browser eine automatisch generierte ID für dich ab. Diese ID wird anschließend immer als Referenz verwendet, wenn du mit der Plattform interagierst.</Text>
+                <Text>Was wir über dich speichern? Alles, was du freiwillig angibst: Vorname, Nachname, Land, Email, Telefonnummer, Adresse, Stadt, Postleitzahl</Text>
+                <Text>Falls du dich dazu entscheiden solltest, die Plattform nicht mehr zu nutzen, hast du selbstverständlich das Recht auf eine vollständige Löschung deiner Daten. Dazu benötigen wir deinen Namen und deine Adresse. Solltest du einen neuen Account erstellen wollen würden wir dir empfehlen die Local Storage zu leeren. Möchtest du lediglich einen neuen Account erstellen, empfehlen wir dir, die Local Storage zu leeren. Danach können wir deinen Browser nicht mehr zuweisen. Viel Spaß beim Verwenden der Cuborr-Plattform.</Text>
             </StyledContainer>
             <Footer />
         </div>
