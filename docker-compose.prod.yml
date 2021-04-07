@@ -17,12 +17,12 @@ services:
       - DB_PASSWORD=rootpassword
     volumes:
       - .:/usr/src/web
-    db:
-      image: mongo:latest
-      ports:
-        - 27017:27017
-      volumes:
-        - mongodb_data_container:/data/db
+  db:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
 
 volumes:
   mongodb_data_container:
