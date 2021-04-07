@@ -3,14 +3,14 @@ This website is open source and non-profit. If you would like to help with devel
 ## Cuborr API
 Our Flask & Python backend
 ### Docker Commands
-run once
+run once_
 ```docker build .```
 ```docker-compose build```
-run in order to start the api
+run in order to start the api_
 ```docker-compose up```
 
 ### Deployment Commands (TODO)
-make sure you have created a build foder by running "yarn build" in "cd client" first
+make sure you have created a build foder by running "yarn build" in "cd client" first_
 ```docker build . -t cuborr```
 ```docker tag cuborr cuborr-webserver:0.0.0.1```
 ```docker tag cuborr-webserver:0.0.0.1 192.168.143.147:5000/cuborr-webserver:0.0.0.1```
@@ -20,9 +20,9 @@ make sure you have created a build foder by running "yarn build" in "cd client" 
 ## Cuborr Client
 Our React & TypeScript frontend
 ### Development
-change directory
+change directory_
 ```cd client```
-run once
+run once_
 ```yarn```
-run everytime
+run everytime_
 ```yarn start```
