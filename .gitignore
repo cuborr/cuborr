@@ -166,6 +166,10 @@ chrome-user-data
 *.swp
 *.swo
 
+# 3D models
+*.STL
+*.zip
+
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build
 packages/react-devtools-extensions/chrome/*.crx
