@@ -1,20 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 // store
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useAssignments } from 'src/data/hooks';
 import { openModal } from 'src/store/layout/actions';
-import { RootState } from 'src/store';
 // components
-import { VectorGraphic, AssignmentItem, Footer } from 'src/components';
-import { AssignmentForm, ContractorForm, ClientIcon, ContractorIcon } from './components';
+import { AssignmentItem, Footer, Navbar } from 'src/components';
+import { AssignmentForm } from './components';
 import {
   BackgroundImage,
-  Navbar,
-  StyledNavContainer,
-  NavLink,
-  NavRow,
-  NavAbsolutContainer,
   StyledContainer,
   TitleContainer,
   Title,
@@ -26,51 +20,27 @@ import {
   Description,
   AssignmentsGrid,
   StyledAssignmentContainer,
+  RelativeContainer
 } from './home.styles';
 
 
 export const Home: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { clientID, contractorID } = useSelector((state: RootState) => state.user);
   const { assignments } = useAssignments();
   const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
-  const onClickRegisterPrinter = () => dispatch(openModal(<ContractorForm />));
-
-  const onChangeLanguage = () => {
-    if (i18n.language === 'de') {
-      i18n.changeLanguage('en')
-    } else {
-      i18n.changeLanguage('de')
-    }
-  }
 
   return (
     <div>
-      <BackgroundImage />
-      <Navbar>
-        <StyledNavContainer>
-          <NavAbsolutContainer>
-            <VectorGraphic name="shapex" height="32pt" />
-          </NavAbsolutContainer>
-          <NavRow>
-            {i18n.language === 'de' ? <NavLink onClick={onChangeLanguage}>{"en "}</NavLink> : "en "}
-            {"|"}
-            {i18n.language === 'en' ? <NavLink onClick={onChangeLanguage}>{" de"}</NavLink> : " de"}
-          </NavRow>
-          {!clientID && !contractorID && (
-            <NavLink onClick={onClickRegisterPrinter}>
-              {t('common.registerPrinter')}
-            </NavLink>
-          )}
-          {contractorID && <ContractorIcon />}
-          {clientID && <ClientIcon />}
-        </StyledNavContainer>
-      </Navbar>
+      <RelativeContainer>
+        <BackgroundImage />
+      </RelativeContainer>
+      <Navbar />
       <StyledContainer>
         <TitleContainer>
           <Title dangerouslySetInnerHTML={{ __html: t('home.broker') }} />
         </TitleContainer>
+
         <DescriptionContainer>
           <DescriptionTextContainer>
             <Description>
@@ -84,6 +54,7 @@ export const Home: React.FC = () => {
             </Description>
           </DescriptionTextContainer>
         </DescriptionContainer>
+
         <ButtonContainer>
           <StyledButton onClick={onClickCreateAssignment}>
             {t('common.createAssignmentNow')}

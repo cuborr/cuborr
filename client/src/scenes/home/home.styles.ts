@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Container, Button } from 'src/components';
-import { Link } from 'react-router-dom';
+
+export const RelativeContainer = styled.div`
+  position: relative;
+  width: 100%;
+`
 
 export const BackgroundImage = styled.div`
   position: absolute;
@@ -16,49 +20,17 @@ export const BackgroundImage = styled.div`
     linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 50%),
     url("https://images.unsplash.com/photo-1508277267762-0044b6c5a1e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
   filter: brightness(30%);
-`
+  @media (max-width: 750px) {
+    padding-top: 80%;
+  }
 
-export const Navbar = styled.nav`
-  height: var(--navbar-height);
-  width: 100%;
-`
+  @media (max-width: 550px) {
+    padding-top: 100%;
+  }
 
-export const StyledNavContainer = styled(Container)`
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-`
-
-export const NavLink = styled.p`
-  font-size: 16px;
-  color: var(--color-text-light);
-  font-weight: 600;
-  margin: 0 5px;
-  cursor: pointer;
-  z-index: 1;
-`
-
-export const NavRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: var(--color-text-light);
-  font-weight: 400;
-  z-index: 1;
-`
-
-export const NavAbsolutContainer = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 50pt;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media (max-width: 450px) {
+    padding-top: 130%;
+  }
 `
 
 export const StyledContainer = styled(Container)`
@@ -101,6 +73,9 @@ export const Title = styled.h1`
   @media (max-width: 715px) {
     font-size: 1.5rem;
   }
+  @media (max-width: 550px) {
+    line-height: 1.8em;
+  }
   
 `;
 
@@ -116,12 +91,16 @@ export const StyledButton = styled(Button)`
 `
 
 export const DescriptionContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-column-gap: var(--margin-l);
   margin-top: 4rem;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
   z-index: 1;
+  @media (max-width: 710px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: var(--margin-l);
+  }
 `
 
 export const DescriptionTextContainer = styled.div`
@@ -133,9 +112,15 @@ export const DescriptionTextContainer = styled.div`
 
 export const DescriptionDivider = styled.div`
   width: 1px;
+  margin: auto 0;
   background-color: var(--color-text-light);
-  opacity: 80%;
-  height: 40pt;
+  opacity: 60%;
+  height: 30pt;
+  @media (max-width: 710px) {
+    width: 30pt;
+    height: 1px;
+    margin: 0 auto;
+  }
 `
 
 export const Description = styled.h6`
@@ -144,19 +129,17 @@ export const Description = styled.h6`
   text-align: center;
   color: var(--color-text-light);
   font-weight: 400;
-  width: 40vw;
   @media (max-width: 990px) {
     font-size: 1em;
     line-height: 1.3em;
-    width: 35vw;
   }
   @media (max-width: 820px) {
     font-size: 0.9em;
     line-height: 1.2em;
   }
-  @media (max-width: 715px) {
-    font-size: 0.7em;
-    line-height: 1.3em;
+  @media (max-width: 550px) {
+    font-size: 0.8em;
+    line-height: 1.2em;
   }
 `
 
@@ -171,10 +154,10 @@ export const AssignmentsGrid = styled.div`
     grid-column-gap: var(--margin-l);
     grid-row-gap: var(--margin-xl);
 
-    @media (max-width: 820px) {
+    @media (max-width: 1350px) {
       grid-template-columns: repeat(2, 1fr);
     }
-    @media (max-width: 820px) {
+    @media (max-width: 1050px) {
       grid-template-columns: repeat(1, 1fr);
     }
 `

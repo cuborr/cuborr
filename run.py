@@ -3,7 +3,6 @@ from flask import (send_from_directory,
                    jsonify, render_template, request, abort, Flask)
 from configurations import BaseConfig
 from models.database import db
-from api.core.views import core_blueprint
 from api.assignment.views import assignment_blueprint
 from api.user.views import user_blueprint
 
@@ -32,7 +31,6 @@ app.config.from_object(CONFIG_PATH)
 db.init_app(app)
 
 # Register blueprints
-app.register_blueprint(core_blueprint)
 app.register_blueprint(assignment_blueprint)
 app.register_blueprint(user_blueprint)
 

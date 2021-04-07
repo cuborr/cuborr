@@ -26,7 +26,8 @@ export const Wrapper = styled.div`
     border: 1.5px solid #FFFFFF11;
     padding: var(--margin-l) var(--margin-l);
     box-shadow: 0px 0px 20px #00000099;
-    width: 450pt;
+    width: 70vw;
+    max-width: 450pt;
 `;
 
 

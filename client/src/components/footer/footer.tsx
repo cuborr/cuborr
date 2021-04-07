@@ -27,6 +27,9 @@ const LinkTitle = styled.p`
     font-size: 1rem;
     color: var(--color-text-light);
     margin-bottom: var(--margin-m);
+    @media (max-width: 780px) {
+        font-size: 0.8rem;
+    }
 `
 
 const StyledLink = styled(Link)`
@@ -34,6 +37,9 @@ const StyledLink = styled(Link)`
     font-size: 1rem;
     color: var(--color-text-dark);
     margin-bottom: var(--margin-l);
+    @media (max-width: 780px) {
+        font-size: 0.8rem;
+    }
 `
 
 const StyledExternalLink = styled.a`
@@ -41,6 +47,9 @@ const StyledExternalLink = styled.a`
     font-size: 1rem;
     color: var(--color-text-dark);
     margin-bottom: var(--margin-l);
+    @media (max-width: 780px) {
+        font-size: 0.8rem;
+    }
 `
 
 const Row = styled.div`
@@ -67,6 +76,9 @@ const Copyright = styled.p`
     font-weight: 400;
     font-size: 0.9rem;
     color: var(--color-text-light);
+    @media (max-width: 780px) {
+        font-size: 0.8rem;
+    }
 `
 
 const StyledVector = styled(VectorGraphic)`
@@ -78,6 +90,10 @@ const Note = styled.p`
     font-size: 0.8rem;
     color: var(--color-text-dark);
     line-height: 1.2rem;
+    @media (max-width: 780px) {
+        font-size: 0.7rem;
+        line-height: 1.1rem;
+    }
 `
 
 export const Footer = () => {

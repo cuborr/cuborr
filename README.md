@@ -11,10 +11,9 @@ run in order to start the api <br />
 
 ### Deployment Commands (TODO)
 make sure you have created a build foder by running "yarn build" in "cd client" first <br />
-```docker build . -t cuborr``` <br />
-```docker tag cuborr cuborr-webserver:0.0.0.1``` <br />
-```docker tag cuborr-webserver:0.0.0.1 192.168.143.147:5000/cuborr-webserver:0.0.0.1``` <br />
-```docker push 192.168.143.147:5000/cuborr-webserver:0.0.0.1``` <br />
+```docker build . -t cuborr-webserver``` <br />
+```docker tag cuborr-webserver cuborr/cuborr:0.0.0.1``` <br />
+```docker push cuborr/cuborr:0.0.0.1``` <br />
 
 
 ## Cuborr Client

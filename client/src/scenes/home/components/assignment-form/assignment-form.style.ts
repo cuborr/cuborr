@@ -27,7 +27,8 @@ export const Wrapper = styled.div`
     border: 1.5px solid #FFFFFF11;
     padding: var(--margin-l) var(--margin-l);
     box-shadow: 0px 0px 20px #00000099;
-    width: 450pt;
+    width: 70vw;
+    max-width: 450pt;
 `;
 
 
@@ -58,6 +59,15 @@ export const AddressGrid = styled.div`
     div:nth-child(4) {
         grid-column: 1 / 9;
     }
+
+    @media (max-width: 490px) {
+        div:nth-child(2) {
+            grid-column: 1 / 6;
+        }
+        div:nth-child(3) {
+            grid-column: 6 / 9;
+        }
+    }
 `;
 
 
@@ -78,6 +88,12 @@ export const AssignmentGrid = styled.div`
     }
     div:nth-child(5) {
         grid-column: 1 / 9;
+    }
+
+    @media (max-width: 610px) {
+        div:nth-child(2) {
+            grid-column: 1 / 9;
+        }
     }
 `;
 
@@ -103,6 +119,9 @@ export const StyledButton = styled(Button)`
     color: var(--color-text-light);
     grid-column: 1 / 4;
     height: 47px;
+    @media (max-width: 610px) {
+        grid-column: 1 / 9;
+    }
 `
 
 export const StyledButtonText = styled.p`
@@ -128,7 +147,11 @@ export const StyledFileContainer = styled.div`
     border-radius: var(--border-radius-s);
     color: var(--color-text-light);
     grid-column: 1 / 4;
+    min-height: 45px;
     cursor: pointer;
+    @media (max-width: 610px) {
+        grid-column: 1 / 9;
+    }
 `
 
 export const StyledCloseIcon = styled(Icon)`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Container, Footer } from 'src/components';
+import { Container, Footer, Navbar } from 'src/components';
 import { useClientAssignments } from 'src/data/hooks';
 import { AssignmentItem } from './components/assignment-item';
 import { RatingModal } from './components/rating-modal';
@@ -17,13 +17,22 @@ const AssignmentGrid = styled.div`
   grid-row-gap: var(--margin-l);
   grid-column-gap: var(--margin-m);
   margin-top: var(--margin-xl);
+  @media (max-width: 1050px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `
 
 const Title = styled.h1`
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: var(--color-text-light);
-  margin-top: var(--margin-xxl);
+  margin-top: var(--margin-xl);
+  @media (max-width: 650px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 1.6rem;
+  }
 `
 
 const PlaceholderText = styled.p`
@@ -33,6 +42,11 @@ const PlaceholderText = styled.p`
   color: var(--color-text-dark);
   max-width: 60%;
   line-height: 1.5rem;
+  @media (max-width: 650px) {
+    font-size: 0.8rem;
+    max-width: 90%;
+    line-height: 1.3rem;
+  }
 `
 
 
@@ -49,6 +63,7 @@ export const ClientAssignment = () => {
 
   return (
     <div>
+      <Navbar />
       <SyledContainer>
         <Title>{t('common.openAssignments')}</Title>
         {!openIsLoading && openAssignments?.length === 0 && <PlaceholderText>{t('common.openAssingmentsPlaceholder')}</PlaceholderText>}
@@ -59,7 +74,7 @@ export const ClientAssignment = () => {
         </AssignmentGrid>
 
         <Title>{t('common.assignmentsInProzess')}</Title>
-        {!isLoading && assignments?.legth === 0 && <PlaceholderText>{t('common.assignmentsInProzessPlaceholder')}</PlaceholderText>}
+        {!isLoading && assignments?.length === 0 && <PlaceholderText>{t('common.assignmentsInProzessPlaceholder')}</PlaceholderText>}
         <AssignmentGrid>
           {assignments?.map((item) => (
             <AssignmentItem item={item} key={item._id.$oid} state="assigned" />

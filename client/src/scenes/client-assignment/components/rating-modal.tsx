@@ -21,8 +21,8 @@ const Container = styled.div`
   padding: var(--margin-l) var(--margin-m);
   animation-name: animatetop;
   animation-duration: 0.3s;
-  width: 90vw;
-  max-width: 500px;
+  width: 80vw;
+  max-width: 450pt;
   background-color: var(--color-text-light);
   z-index: 2;
   box-shadow: 0px 0px 20px #00000099;

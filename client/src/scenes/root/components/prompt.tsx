@@ -18,7 +18,7 @@ export const Container = styled.div<IStyleProps>`
   padding: var(--margin-r) 12pt;
   animation-name: animatetop;
   animation-duration: 0.3s;
-  width: 90vw;
+  width: 80vw;
   max-width: 400px;
   background-color: ${({ color }) => color};
   z-index: 2;
