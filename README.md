@@ -1,19 +1,28 @@
-# React Flask Template
-## Docker Commands
-- run the build command once
-- make sure you did run "yarn" in the folder client first
-docker-compose build
-docker-compose up
+# Cuborr Platform
+This website is open source and non-profit. If you would like to help with development, feel free to submit a merge request via GitHub. Otherwise, we would also greatly appreciate a donation. This project was implemented in connection with the 5-Euro-Business at the University of Applied Sciences Kempten
+## Cuborr API
+Our Flask & Python backend
+### Docker Commands
+run once
+```docker build .```
+```docker-compose build```
+run in order to start the api
+```docker-compose up```
 
-## Testing Development
-- uncomment in file "docker-compose.test.yml" for debuggin purposes
-docker-compose -f docker-compose.test.yml up --build
-docker-compose -f docker-compose.test.yml down
+### Deployment Commands (TODO)
+make sure you have created a build foder by running "yarn build" in "cd client" first
+```docker build . -t cuborr```
+```docker tag cuborr cuborr-webserver:0.0.0.1```
+```docker tag cuborr-webserver:0.0.0.1 192.168.143.147:5000/cuborr-webserver:0.0.0.1```
+```docker push 192.168.143.147:5000/cuborr-webserver:0.0.0.1```
 
-## Deployment Commands (TODO)
-- make sure you have created a build foder by running "yarn build" in "cd client" first
-docker build . -t reactflasktempalte
-docker tag reactflasktempalte reactflasktempalte-google-dev:1.0.0.0
-docker tag reactflasktempalte-google-dev:1.0.0.0 192.168.143.147:5000/reactflasktempalte-google-dev:1.0.0.0
-docker push 192.168.143.147:5000/reactflasktempalte-google-dev:1.0.0.0
 
+## Cuborr Client
+Our React & TypeScript frontend
+### Development
+change directory
+```cd client```
+run once
+```yarn```
+run everytime
+```yarn start```

@@ -81,19 +81,27 @@ export const Title = styled.h1`
   font-size: 4rem;
   color: var(--color-text-light);
   font-weight: 800;
-  /*
-  @media (max-width: 820px) {
-    font-size: 3rem;
-  }
-  @media (max-width: 550px) {
-    font-size: 2.4rem;
-  }
-  */
   strong {
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-color: var(--color-text-light);
     -webkit-text-stroke-width: 2.00px; 
   }
+  @media (max-width: 1265px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 990px) {
+    font-size: 2.4rem;
+  }
+  @media (max-width: 820px) {
+    font-size: 2rem;
+    strong {
+      -webkit-text-stroke-width: 1.5px; 
+    }
+  }
+  @media (max-width: 715px) {
+    font-size: 1.5rem;
+  }
+  
 `;
 
 export const ButtonContainer = styled.div`
@@ -137,6 +145,19 @@ export const Description = styled.h6`
   color: var(--color-text-light);
   font-weight: 400;
   width: 40vw;
+  @media (max-width: 990px) {
+    font-size: 1em;
+    line-height: 1.3em;
+    width: 35vw;
+  }
+  @media (max-width: 820px) {
+    font-size: 0.9em;
+    line-height: 1.2em;
+  }
+  @media (max-width: 715px) {
+    font-size: 0.7em;
+    line-height: 1.3em;
+  }
 `
 
 export const StyledAssignmentContainer = styled(Container)`
@@ -149,4 +170,11 @@ export const AssignmentsGrid = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: var(--margin-l);
     grid-row-gap: var(--margin-xl);
+
+    @media (max-width: 820px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 820px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
 `

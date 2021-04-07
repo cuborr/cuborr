@@ -99,7 +99,7 @@ export const Footer = () => {
                 <GridColumn>
                     <LinkTitle>{t('footer.external')}</LinkTitle>
                     <StyledExternalLink href="https://www.instagram.com/cuborr_com">Instagram</StyledExternalLink>
-                    <StyledExternalLink>GitHub</StyledExternalLink>
+                    <StyledExternalLink href="https://github.com/cuborr/cuborr">GitHub</StyledExternalLink>
                 </GridColumn>
             </StyledLinksGrid>
             <Row>
