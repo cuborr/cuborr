@@ -1,12 +1,10 @@
-FROM python:3.8.3-alpine
+FROM python:3.8-slim
 
 ENV PYTHONUNBUFFERED=1
 
 # install system dependencies
 RUN apt-get update && apt-get install -y \
-    gcc \
-    python3-dev \
-    musl-dev
+    gcc
     
 RUN pip install --upgrade pip
 
