@@ -23,6 +23,6 @@ Our React & TypeScript frontend
 change directory <br />
 ```cd client``` <br />
 run once <br />
-```yarn```
+```yarn``` <br />
 run everytime <br />
 ```yarn start``` <br />
