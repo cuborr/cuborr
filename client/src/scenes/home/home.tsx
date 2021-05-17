@@ -20,7 +20,10 @@ import {
   Description,
   AssignmentsGrid,
   StyledAssignmentContainer,
-  RelativeContainer
+  RelativeContainer,
+  TitleWrapper,
+  BetaBadgeContainer,
+  BetaBadgeText
 } from './home.styles';
 
 
@@ -30,6 +33,7 @@ export const Home: React.FC = () => {
   const { assignments } = useAssignments();
   const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
 
+
   return (
     <div>
       <RelativeContainer>
@@ -38,9 +42,13 @@ export const Home: React.FC = () => {
       <Navbar />
       <StyledContainer>
         <TitleContainer>
-          <Title dangerouslySetInnerHTML={{ __html: t('home.broker') }} />
+          <TitleWrapper>
+            <Title dangerouslySetInnerHTML={{ __html: t('home.broker') }} />
+            <BetaBadgeContainer>
+              <BetaBadgeText>BETA</BetaBadgeText>
+            </BetaBadgeContainer>
+          </TitleWrapper>
         </TitleContainer>
-
         <DescriptionContainer>
           <DescriptionTextContainer>
             <Description>

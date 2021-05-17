@@ -65,10 +65,7 @@ const CopyrightRow = styled.div`
     align-items: center;
 `
 
-const Name = styled.p`
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: var(--color-text-light);
+const Logo = styled(VectorGraphic)`
     margin-right: 5pt;
 `
 
@@ -109,19 +106,40 @@ export const Footer = () => {
                 <GridColumn>
                     <LinkTitle>{t('footer.founders')}</LinkTitle>
                     <StyledLink>Nico Müller</StyledLink>
-                    <StyledLink>Felix Gebert</StyledLink>
-                    <StyledLink>Konstantin Paulus</StyledLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="https://de.linkedin.com/in/felixgebert">
+                        Felix Gebert
+                    </StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="https://de.linkedin.com/in/konstantin-paulus-a0259717a">
+                        Konstantin Paulus
+                    </StyledExternalLink>
                 </GridColumn>
                 <GridColumn>
                     <LinkTitle>{t('footer.external')}</LinkTitle>
-                    <StyledExternalLink href="https://www.instagram.com/cuborr_com">Instagram</StyledExternalLink>
-                    <StyledExternalLink href="https://github.com/cuborr/cuborr">GitHub</StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="https://www.instagram.com/cuborr_com">
+                        Instagram
+                    </StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="https://github.com/cuborr/cuborr">
+                        GitHub
+                    </StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="https://www.linkedin.com/company/cuborr">
+                        LinkedIn
+                    </StyledExternalLink>
                 </GridColumn>
             </StyledLinksGrid>
             <Row>
                 <CopyrightRow>
-                    <Name>CUBORR</Name>
-                    <Copyright>© 2021 Paulus K., Gerbert F., Müller N.</Copyright>
+                    <Logo name="logo">CUBORR</Logo>
+                    <Copyright>© 2021 Paulus K., Gebert F., Müller N.</Copyright>
                 </CopyrightRow>
                 <StyledVector name="shapex" height="20pt" />
             </Row>

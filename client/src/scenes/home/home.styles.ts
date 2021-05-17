@@ -76,8 +76,42 @@ export const Title = styled.h1`
   @media (max-width: 550px) {
     line-height: 1.8em;
   }
-  
 `;
+
+export const TitleWrapper = styled.h1`
+  position: relative;
+  padding-bottom: 2.1rem;
+  @media (max-width: 820px) {
+    padding-bottom: 1.8rem;
+  }
+  @media (max-width: 715px) {
+    padding-bottom: 1.5rem;
+  }
+  @media (max-width: 550px) {
+    padding-bottom: 1rem;
+  }
+`
+
+export const BetaBadgeContainer = styled.div`
+  padding: 0.2rem 0.4rem 0.15rem;
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-text-light);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+`
+
+export const BetaBadgeText = styled.p`
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-bg-dark);
+  @media (max-width: 820px) {
+    font-size: 0.7rem;
+  }
+  @media (max-width: 715px) {
+    font-size: 0.6rem;
+  }
+`
 
 export const ButtonContainer = styled.div`
   display: flex;
