@@ -195,3 +195,48 @@ export const AssignmentsGrid = styled.div`
       grid-template-columns: repeat(1, 1fr);
     }
 `
+
+export const TutorialButtonContainer = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%, -3%);
+  animation-name: animatebottom;
+  animation-duration: 0.3s;
+  background-color: var(--color-bg-light);
+  border-radius: var(--border-radius-l);
+  border: 1.5px solid #FFFFFF11;
+  padding: var(--margin-r) var(--margin-r);
+  box-shadow: 0px 0px 20px #00000099;
+  cursor: pointer;
+  width: 82vw;
+  max-width: 300pt;
+  z-index: 4;
+
+  @keyframes animatebottom {
+    from {
+      bottom: 0%;
+      opacity: 0;
+    }
+    to {
+      bottom: 3%;
+      opacity: 1;
+    }
+  }
+
+  @supports (
+    (-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))
+  ) {
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+  }
+`;
+
+export const TutorialText = styled.div`
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-green);
+`;

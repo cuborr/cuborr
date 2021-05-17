@@ -42,12 +42,23 @@
         "closedAssignmentsPlaceholderContractor": "Aufträge werden hier abgelegt sobald Du Deine offenen Aufträge abgeschlossen hast und die Zahlung durchgeführt wurde",
         "assignmentCompleted": "Auftrag wurde versendet",
         "rate": "Bewerten",
-        "rateUser": "Benutzer Bewerten"
+        "rateUser": "Benutzer Bewerten",
+        "client": "Auftragnehmer",
+        "contractor": "Auftraggeber"
     },
     "home": {
         "broker": "Wir vermitteln <strong>3D-Druckaufträge</strong>",
         "insentive0": "Teste die Drucker der Community und realisiere Dein 3D-Modell zum günstigsten 💰",
-        "insentive1": "Verdiene mit Deinem ungenutzten Drucker 💸 und beteilige Dich an spannenden Projekten"
+        "insentive1": "Verdiene mit Deinem ungenutzten Drucker 💸 und beteilige Dich an spannenden Projekten",
+        "understood": "Okay, habs verstanden",
+        "welcome": "Willkommen bei CUBORR",
+        "howItWorks": "So funktionierts",
+        "tutorial": "Hilfe anzeigen",
+        "tutorial0": "Über \"Jetzt kostenlos Auftrag erstellen\" kann ein 3-D Model hochgeladen werden",
+        "tutorial1": "Wenn über \"Drucker registrieren\" Informationen zu einem 3-D Drucker hinterlassen wurden, kann bei den Druckaufträgen eine Bewerbung hinterlassen werden",
+        "tutorial2": "Anschließend kann über das Drucker Icon alle Bewerbungen eingesehen, mit den Auftranehmern über die Kommentarfunktion kommuniziert und Bewerber angenommen werden",
+        "tutorial3": "Sobald ein Auftrag angenommen wurde erscheint dieser in der Auftragsliste des Auftragnehmers und dieser kann mit der Bearbeitung beginnen",
+        "tutorial4": "Nachdem das 3-D Model geliefert und die Zahlung über E-Mail geregelt, sowie der Auftrag geschlossen wurde kann der Auftraggeber eine Bewertung hinterlassen"
     },
     "assignment": {
         "nameTitle": "Wie sollen wir Dich nennen?",

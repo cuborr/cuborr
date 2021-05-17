@@ -42,12 +42,23 @@
         "closedAssignmentsPlaceholderContractor": "Assignments are stored here as soon as you have completed your open orders and the payment has been made",
         "assignmentCompleted": "Assignment Completed",
         "rate": "Rate",
-        "rateUser": "Rate User"
+        "rateUser": "Rate User",
+        "client": "Client",
+        "contractor": "Contractor"
     },
     "home": {
         "broker": "We arrange <strong>3D printing orders</strong>",
         "insentive0": "Test the printers of the community and realize your 3D model at the best 💰",
-        "insentive1": "Earn 💸 with your unused printer and participate in exciting projects"
+        "insentive1": "Earn 💸 with your unused printer and participate in exciting projects",
+        "understood": "Okay, got it",
+        "welcome": "Welcome to CUBORR",
+        "howItWorks": "This is how it works",
+        "tutorial": "Show help",
+        "tutorial0": "Via \"Create Assignment for free\", a 3-D model can be uploaded",
+        "tutorial1": "If via \"Register Printer\" information about a 3-D printer has been provided, an application can be left with the print jobs",
+        "tutorial2": "Subsequently, all applications can be viewed via the printer icon, communication with the applicants via the comment function and applicants can be accepted.",
+        "tutorial3": "Once an assignment is accepted, it appears in the contractor's order list and he can start processing it",
+        "tutorial4": "After the 3-D model has been delivered and the payment has been settled via e-mail, as well as the assingment has been closed, the client can leave a rating."
     },
     "assignment": {
         "nameTitle": "What should we call you?",

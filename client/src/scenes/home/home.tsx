@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 // store
-import { useDispatch } from 'react-redux';
+import { RootState } from 'src/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAssignments } from 'src/data/hooks';
 import { openModal } from 'src/store/layout/actions';
 // components
 import { AssignmentItem, Footer, Navbar } from 'src/components';
-import { AssignmentForm } from './components';
+import { AssignmentForm, Tutorial } from './components';
 import {
   BackgroundImage,
   StyledContainer,
@@ -23,16 +24,28 @@ import {
   RelativeContainer,
   TitleWrapper,
   BetaBadgeContainer,
-  BetaBadgeText
+  BetaBadgeText,
+  TutorialButtonContainer,
+  TutorialText
 } from './home.styles';
 
 
 export const Home: React.FC = () => {
+  const [visible, setVisible] = React.useState<boolean>(false)
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { assignments } = useAssignments();
+  const layout = useSelector((state: RootState) => state.layout);
   const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
+  const onClickShowTutorial = () => dispatch(openModal(<Tutorial />));
 
+  React.useEffect(() => {
+    if (!window.localStorage.getItem("tutorial")) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  }, [layout.modalIsVisible])
 
   return (
     <div>
@@ -79,6 +92,11 @@ export const Home: React.FC = () => {
         </AssignmentsGrid>
       </StyledAssignmentContainer>
       <Footer />
+      {visible && (
+        <TutorialButtonContainer onClick={onClickShowTutorial}>
+          <TutorialText>{t('home.tutorial')}</TutorialText>
+        </TutorialButtonContainer>
+      )}
     </div>
   );
 };
