@@ -58,7 +58,7 @@ export const ClientIcon: React.FC = () => {
     })
 
     return (
-        <Container to="/client/assignments">
+        <Container to="beta/client/assignments">
             <StyledIcon name="print" size="18pt" />
             {
                 count > 0 && (

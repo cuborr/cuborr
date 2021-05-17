@@ -59,7 +59,7 @@ export const ContractorIcon: React.FC = () => {
     })
 
     return (
-        <Container to="/contractor/assignments">
+        <Container to="beta/contractor/assignments">
             <StyledIcon name="clipboard" size="18pt" />
             {
                 count > 0 && (

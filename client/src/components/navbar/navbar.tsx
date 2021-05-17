@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
         <NavbarContainer>
             <RelativeContainer>
                 <NavAbsolutContainer>
-                    <Link to="/">
+                    <Link to="/beta">
                         <VectorGraphic name="shapex" height="32pt" />
                     </Link>
                 </NavAbsolutContainer>
