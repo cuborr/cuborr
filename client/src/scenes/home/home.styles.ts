@@ -201,7 +201,7 @@ export const TutorialButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 3%;
+  bottom: 2%;
   left: 50%;
   transform: translate(-50%, -3%);
   animation-name: animatebottom;

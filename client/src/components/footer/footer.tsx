@@ -97,7 +97,7 @@ const DonateRow = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: var(--margin-xxl) 0 var(--margin-xl);
+    margin: var(--margin-xxl) 0;
 `
 
 const DonateText = styled.a`
