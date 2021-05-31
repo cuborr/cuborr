@@ -36,8 +36,20 @@ export const Home: React.FC = () => {
   const dispatch = useDispatch();
   const { assignments } = useAssignments();
   const layout = useSelector((state: RootState) => state.layout);
+  const { clientID, contractorID } = useSelector((state: RootState) => state.user);
   const onClickCreateAssignment = () => dispatch(openModal(<AssignmentForm />));
   const onClickShowTutorial = () => dispatch(openModal(<Tutorial />));
+
+  React.useEffect(() => {
+    const token = clientID ? clientID : contractorID ? contractorID : false
+    const registerPageVisit = async () => {
+      const res = await fetch("/api/metrics/page-visit", {
+        method: 'GET',
+        headers: token ? { Authorization: `Token ${token}` } : {},
+      })
+    }
+    registerPageVisit()
+  }, [])
 
   React.useEffect(() => {
     if (!window.localStorage.getItem("tutorial")) {

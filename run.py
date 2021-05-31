@@ -6,6 +6,7 @@ from configurations import BaseConfig
 from models.database import db
 from api.assignment.views import assignment_blueprint
 from api.user.views import user_blueprint
+from api.admin.views import admin_blueprint
 
 try:
     PRODUCTION = os.environ["FLASK_ENV"] == "production"
@@ -35,6 +36,7 @@ db.init_app(app)
 # Register blueprints
 app.register_blueprint(assignment_blueprint)
 app.register_blueprint(user_blueprint)
+app.register_blueprint(admin_blueprint)
 
 @app.route("/")
 def serve_react_app():

@@ -5,7 +5,8 @@ import { ClientAssignment } from 'src/scenes/client-assignment';
 import { ContractorAssignment } from 'src/scenes/contractor-assignment';
 import { Root } from 'src/scenes/root/root';
 import { NotFound, UnexpectedError } from 'src/scenes/error';
-import { PrivacyPolicy, CompanyDetails } from 'src/scenes/legal';
+import { PrivacyPolicy, CompanyDetails, TermsAndConditions } from 'src/scenes/legal';
+import { Metrics } from 'src/scenes/metrics';
 
 export const Router = () => {
   return (
@@ -18,6 +19,8 @@ export const Router = () => {
           <Route path="/beta/contractor/assignments" component={ContractorAssignment} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/company-details" component={CompanyDetails} />
+          <Route path="/metrics" component={Metrics} />
+          <Route path="/terms-and-conditions" component={TermsAndConditions} />
           <Route path="/unexpected-error" component={UnexpectedError} />
           <Route path="*" component={NotFound} />
         </Switch>
