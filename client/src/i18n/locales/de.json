@@ -101,8 +101,11 @@
         "legal": "Rechtliches",
         "companyDetails": "Impressum",
         "privacyPolicy": "Datenschutzerklärung",
+        "termsAndConditions": "Allgemeine Geschäftsbedingungen",
         "founders": "Gründer",
         "external": "Extern",
-        "note": "Diese Website ist Open-Source und Non-Profit. Wenn du gerne bei der Entwicklung helfen möchtest, kannst du gerne über GitHub einen 'Merge Request' einreichen. Andernfalls würden wir uns auch sehr über eine Spende freuen. Dieses Projekt wurde im Zusammenhang mit dem 5-Euro-Business an der Hochschule Kempten umgesetzt."
+        "note": "Diese Website ist Open-Source und Non-Profit. Wenn du gerne bei der Entwicklung helfen möchtest, kannst du gerne über GitHub einen 'Merge Request' einreichen. Andernfalls würden wir uns auch sehr über eine Spende freuen. Dieses Projekt wurde im Zusammenhang mit dem 5-Euro-Business an der Hochschule Kempten umgesetzt.",
+        "donate": "Spendiere uns einen Kaffee 😃"
+        
     }
 }

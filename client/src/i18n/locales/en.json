@@ -101,8 +101,10 @@
         "legal": "Legal",
         "companyDetails": "Company Details",
         "privacyPolicy": "Privacy Policy",
+        "termsAndConditions": "Terms & Conditions",
         "founders": "Founders",
         "external": "External",
-        "note": "This website is open source and non-profit. If you would like to help with development, feel free to submit a merge request via GitHub. Otherwise, we would also greatly appreciate a donation. This project was implemented in connection with the 5-Euro-Business at the University of Applied Sciences Kempten."
+        "note": "This website is open source and non-profit. If you would like to help with development, feel free to submit a merge request via GitHub. Otherwise, we would also greatly appreciate a donation. This project was implemented in connection with the 5-Euro-Business at the University of Applied Sciences Kempten.",
+        "donate": "Donate us Coffee 😃"
     }
 }

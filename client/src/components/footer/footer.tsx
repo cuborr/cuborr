@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Container, VectorGraphic } from 'src/components';
 
 const StyledContainer = styled(Container)`
-    padding-bottom: 50pt;
     padding-top: 100pt;
 `;
 
@@ -93,6 +92,22 @@ const Note = styled.p`
     }
 `
 
+const DonateRow = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--margin-xxl) 0 var(--margin-xl);
+`
+
+const DonateText = styled.a`
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-top: var(--margin-s);
+    cursor: pointer;
+`
+
 export const Footer = () => {
     const { t } = useTranslation();
     return (
@@ -100,8 +115,21 @@ export const Footer = () => {
             <StyledLinksGrid>
                 <GridColumn>
                     <LinkTitle>{t('footer.legal')}</LinkTitle>
-                    <StyledLink to="/company-details">{t('footer.companyDetails')}</StyledLink>
-                    <StyledLink to="/privacy-policy">{t('footer.privacyPolicy')}</StyledLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="/company-details">
+                        {t('footer.companyDetails')}
+                    </StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="/privacy-policy">
+                        {t('footer.privacyPolicy')}
+                    </StyledExternalLink>
+                    <StyledExternalLink
+                        target="_blank"
+                        href="/terms-and-conditions">
+                        {t('footer.termsAndConditions')}
+                    </StyledExternalLink>
                 </GridColumn>
                 <GridColumn>
                     <LinkTitle>{t('footer.founders')}</LinkTitle>
@@ -144,6 +172,15 @@ export const Footer = () => {
                 <StyledVector name="shapex" height="20pt" />
             </Row>
             <Note>{t('footer.note')}</Note>
+            <DonateRow>
+                <VectorGraphic name="coffee" />
+                <DonateText
+                    target="_blank"
+                    href="https://ko-fi.com/cuborr"
+                >
+                    {t('footer.donate')}
+                </DonateText>
+            </DonateRow>
         </StyledContainer>
     );
 };
